@@ -10,9 +10,9 @@ public class MinHeap extends Heap{
         int left = getLeftInd(curr);
         int right = getRightInd(curr);
         int smallest = curr;
-        if (left <= _parr.length && _parr[smallest].getX() > _parr[left].getX())
+        if (left <= _parr.length && _parr[smallest].getY() > _parr[left].getY())
             smallest = left;
-        if (right <= _parr.length && _parr[smallest].getX() > _parr[right].getX())
+        if (right <= _parr.length && _parr[smallest].getY() > _parr[right].getY())
             smallest = right;
         if (smallest != curr) {
             switchvals(curr, smallest);

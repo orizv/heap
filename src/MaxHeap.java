@@ -15,9 +15,9 @@ public class MaxHeap extends Heap {
         int left=getLeftInd(curr);
         int right=getRightInd(curr);
         int largest=curr;
-        if(left<=_parr.length && _parr[largest].getX()<_parr[left].getX())
+        if(left<=_parr.length && _parr[largest].getY()<_parr[left].getY())
             largest=left;
-        if(right<=_parr.length && _parr[largest].getX()<_parr[right].getX())
+        if(right<=_parr.length && _parr[largest].getY()<_parr[right].getY())
             largest=right;
         if(largest!=curr){
             switchvals(curr,largest);
