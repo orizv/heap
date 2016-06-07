@@ -6,7 +6,7 @@ public class MaxHeap extends Heap {
     public MaxHeap(Point[] parr){
         super(parr);
     }
-
+    public MaxHeap(int n){super(n);}
     /**
      * standard heap heapify function
      * @param curr current index in the array

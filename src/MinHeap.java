@@ -6,6 +6,7 @@ public class MinHeap extends Heap{
     public MinHeap(Point[] parr){
         super(parr);
     }
+    public MinHeap(int n) {super(n);}
     public void heapify(int curr) {
         int left = getLeftInd(curr);
         int right = getRightInd(curr);
