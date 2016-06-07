@@ -5,6 +5,10 @@ public abstract class Heap {
 
     private int _size;
     protected Point[] _parr;
+    public Heap(int n){
+        _size=0;
+        _parr=new Point[n+10*(int)Math.log(2)];
+    }
     public Heap(Point[] parr){
         int n=parr.length;
         _parr=new Point[n+10*(int)Math.log(n)+1];
@@ -12,6 +16,7 @@ public abstract class Heap {
             insert(parr[i]);
         }
     }
+    public int get_size(){return _size;}
     public void insert(Point p) {
         _parr[_size]=new Point(p);
         heapify(_size);
