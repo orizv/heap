@@ -1,18 +1,21 @@
 
 public class PointDataStructure implements PDT {
 
-	private MaxHeap _maxHeap;
-	private MinHeap _minHeap;
+	private YHandeler _yHandler;
+	private XHandeler _xHandler;
 
 	//////////////// DON'T DELETE THIS CONSTRUCTOR ////////////////
 	public PointDataStructure(Point[] points, Point initialYMedianPoint)
 	{
-
+		_yHandler=new YHandeler(points);
+		_xHandler=new XHandeler(points);
+		addPoint(initialYMedianPoint);
 	}
 
 	@Override
 	public void addPoint(Point point) {
-
+		_yHandler.addPoint(point);
+		_xHandler.insert(point);
 	}
 
 	@Override
@@ -35,13 +38,13 @@ public class PointDataStructure implements PDT {
 
 	@Override
 	public void removeMedianPoint() {
+		 _yHandler.extractMedian();
 
 	}
 
 	@Override
 	public Point[] getMedianPoints(int k) {
-		// TODO Auto-generated method stub
-		return null;
+		_yHandler.getMedianPoints(k);
 	}
 
 	@Override

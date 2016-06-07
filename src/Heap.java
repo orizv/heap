@@ -33,7 +33,12 @@ public abstract class Heap {
         heapify(0);
         return ans;
     }
-
+    public Point getTop(){
+        if(_size==0)
+            return null;
+        Point ans=_parr[0];
+        return ans;
+    }
 
     /**
      * switches the values in the point array of n1 and n2

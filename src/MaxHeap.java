@@ -6,7 +6,7 @@ public class MaxHeap extends Heap {
     public MaxHeap(Point[] parr){
         super(parr);
     }
-    public MaxHeap(int n){super(n);}
+    public MaxHeap(int n){super(2*n);}
     /**
      * standard heap heapify function
      * @param curr current index in the array
@@ -15,9 +15,11 @@ public class MaxHeap extends Heap {
         int left=getLeftInd(curr);
         int right=getRightInd(curr);
         int largest=curr;
-        if(left<=_parr.length && _parr[largest].getY()<_parr[left].getY())
+        if(left<=_parr.length && (_parr[largest].getY()<_parr[left].getY()||
+                _parr[largest].getY()==_parr[left].getY()&&_parr[largest].getX()<_parr[left].getX()))
             largest=left;
-        if(right<=_parr.length && _parr[largest].getY()<_parr[right].getY())
+        if(right<=_parr.length && _parr[largest].getY()<_parr[right].getY()||
+                _parr[largest].getY()==_parr[right].getY()&&_parr[largest].getX()<_parr[right].getX())
             largest=right;
         if(largest!=curr){
             switchvals(curr,largest);

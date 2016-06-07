@@ -4,14 +4,72 @@
 public class TotalHeap {
     private MinHeap _minHeap;
     private MaxHeap _maxHeap;
+    private Point _midean;
 
     public TotalHeap(Point[] points){
         _maxHeap=new MaxHeap(points.length);
         _minHeap=new MinHeap(points.length);
-    }
-    public void add(Point p){
-        if(_maxHeap.get_size()>_minHeap.get_size()){
-            
+        for(int i=0;i<points.length;i++){
+            add(points[i]);
         }
     }
+
+    /**
+     * addes a point to data stracture
+     * @param p
+     */
+    public void add(Point p){
+        if(_midean==null)   //if the array is empty
+        {
+            _midean=p;
+        }
+        else {
+            if (p.getY() > _midean.getY()) {    //if the given point is bigger than the middiean
+                _minHeap.insert(p);
+            }
+            else {                              //given point is larger or smaller than the middiean
+                _maxHeap.insert(p);
+            }
+            syncSize();
+        }
+    }
+    public Point get_midean(){
+        return _midean;
+    }
+    /**
+     * returns the median points in the heap
+     * @return  Point that is the median by the Y value
+     */
+    public Point extractMedian()
+    {
+        Point ans=_midean;
+        _midean=_maxHeap.extract();
+        syncSize();
+        return  ans;
+    }
+
+    /**
+     * returns the number of all items in the heap
+     * @return  the number of all items in the heap
+     */
+    public int getSize(){
+        return _maxHeap.get_size()+_minHeap.get_size();
+    }
+    /**
+     * Syncs the size of both heaps
+     */
+    private void syncSize(){
+        if (_maxHeap.get_size() > _minHeap.get_size()+1) {  // make the size differ by max 1
+            Point temp=_midean;
+            _midean=_maxHeap.extract();
+            _minHeap.insert(temp);
+        }
+        if (_minHeap.get_size() > _maxHeap.get_size()+1) {
+            Point temp=_midean;
+            _midean=_minHeap.extract();
+            _maxHeap.insert(temp);
+        }
+    }
+
+
 }
