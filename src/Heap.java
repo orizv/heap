@@ -20,8 +20,15 @@ public abstract class Heap {
     public abstract void heapify(int curr);
 
     public Point extract(){
-        return new Point(_parr[0]);
+        if(_size==0)
+            return null;
+        Point ans=_parr[0];
+        _size--;
+        _parr[0]=_parr[_size];
+        heapify(0);
+        return ans;
     }
+
 
     /**
      * switches the values in the point array of n1 and n2
@@ -35,31 +42,6 @@ public abstract class Heap {
     }
 
     /**
-     * returns the index of given point in the point array
-     * @param p point to look for
-     * @return the index of the given point, or -1 if isn't in the array
-     */
-    protected int getInd(Point p){
-        for (int i=0;i<_parr.length;i++){
-            if(p==_parr[i])
-                return i;
-        }
-        return -1;
-    }
-
-    /**
-     * returns the parrent of given point
-     * @param p point to look for
-     * @return index of the parrent of p
-     */
-    protected int getParentInd(Point p){
-        int ans;
-        ans=getInd(p);
-        ans=ans/2;
-        return ans;
-    }
-
-    /**
      * returns the parrent of given point
      * @param ind index of point to look for
      * @return index of the parrent of ind
@@ -67,16 +49,7 @@ public abstract class Heap {
     protected int getParentInd(int ind){
         return ind/2;
     }
-    /**
-     * returns the right son of given point
-     * @param p point to look for
-     * @return index of the right son of p
-     */
-    protected int getRightInd(Point p){
-        int ans=getInd(p);
-        ans=2*ans+1;
-        return ans;
-    }
+
     /**
      * returns the right son of given point
      * @param ind index of point to look for
@@ -85,16 +58,7 @@ public abstract class Heap {
     protected int getRightInd(int ind){
         return ind*2+1;
     }
-    /**
-     * returns the left son of given point
-     * @param p point to look for
-     * @return index of the left son of p
-     */
-    protected int getLeftInd(Point p){
-        int ans=getInd(p);
-        ans=2*ans;
-        return ans;
-    }
+
     /**
      * returns the left son of given point
      * @param ind index of point to look for
@@ -103,4 +67,5 @@ public abstract class Heap {
     protected int getLeftInd(int ind){
         return 2*ind;
     }
+
 }
