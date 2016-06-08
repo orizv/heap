@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="55182a67-1b68-45ad-bb15-3f810c280684" name="Default" comment="" />
+=======
+    <list default="true" id="55182a67-1b68-45ad-bb15-3f810c280684" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TotalHeap.java" afterPath="$PROJECT_DIR$/src/TotalHeap.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/YHandeler.java" afterPath="$PROJECT_DIR$/src/YHandeler.java" />
+    </list>
+>>>>>>> Stashed changes
     <ignored path="heap.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,6 +29,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< Updated upstream
       <file leaf-file-name="GUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -55,6 +64,19 @@
           </provider>
         </entry>
       </file>
+<<<<<<< Updated upstream
+=======
+      <file leaf-file-name="TotalHeap.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/TotalHeap.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="465">
+              <caret line="47" column="4" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+>>>>>>> Stashed changes
       <file leaf-file-name="Heap.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Heap.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -103,9 +125,37 @@
       <file leaf-file-name="Point.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Point.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
             <state relative-caret-position="75">
               <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+=======
+            <state relative-caret-position="495">
+              <caret line="45" column="24" selection-start-line="45" selection-start-column="24" selection-end-line="45" selection-end-column="24" />
+>>>>>>> Stashed changes
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Object.java" pinned="false" current-in-tab="false">
+        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/src.zip!/java/lang/Object.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="148" column="19" selection-start-line="148" selection-start-column="19" selection-end-line="148" selection-end-column="19" />
+              <folding>
+                <element signature="docComment;class#Object#0" expanded="false" />
+                <element signature="docComment;method#getClass#0;class#Object#0" expanded="false" />
+                <element signature="docComment;method#hashCode#0;class#Object#0" expanded="false" />
+                <element signature="docComment;method#equals#0;class#Object#0" expanded="false" />
+                <element signature="docComment;method#clone#0;class#Object#0" expanded="false" />
+                <element signature="docComment;method#toString#0;class#Object#0" expanded="false" />
+                <element signature="docComment;method#notify#0;class#Object#0" expanded="false" />
+                <element signature="docComment;method#notifyAll#0;class#Object#0" expanded="false" />
+                <element signature="docComment;method#wait#0;class#Object#0" expanded="false" />
+                <element signature="docComment;method#wait#1;class#Object#0" expanded="false" />
+                <element signature="docComment;method#wait#2;class#Object#0" expanded="false" />
+                <element signature="docComment;method#finalize#0;class#Object#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -590,6 +640,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/src/Point.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -598,6 +649,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> Stashed changes
     <entry file="file://$PROJECT_DIR$/src/PDT.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -606,6 +659,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/src/GUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -624,6 +678,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> Stashed changes
     <entry file="file://$PROJECT_DIR$/src/PointDataStructure.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -634,6 +690,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/src/Heap.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1440">
@@ -655,6 +712,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Node.java" />
     <entry file="file://$PROJECT_DIR$/src/Main.java">
+=======
+    <entry file="file://$PROJECT_DIR$/src/MinHeap.java">
+>>>>>>> Stashed changes
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
@@ -683,6 +743,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/src/PointDataStructure.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="460">
@@ -693,6 +754,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/src/MaxHeap.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="550">

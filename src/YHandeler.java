@@ -19,13 +19,6 @@ public class YHandeler {
     }
 
     public Point[] getMedianPoints(int k) {
-        Point[] ans=new Point[_heap.getSize()];
-        for(int i=0;i<k;i++){
-            ans[i]=_heap.extractMedian();
-        }
-        for(int i=0;i<k;i++){
-            _heap.add(ans[i]);
-        }
-        return ans;
+        return _heap.getMedianPoints(k);
     }
 }

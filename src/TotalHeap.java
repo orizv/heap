@@ -4,7 +4,7 @@
 public class TotalHeap {
     private MinHeap _minHeap;
     private MaxHeap _maxHeap;
-    private Point _midean;
+    private Node _midean;
 
     public TotalHeap(Point[] points){
         _maxHeap=new MaxHeap(points.length);
@@ -13,7 +13,10 @@ public class TotalHeap {
             add(points[i]);
         }
     }
-
+    public TotalHeap(int n){
+        _minHeap=new MinHeap(n/2+1);
+        _maxHeap=new MaxHeap(n/2+1);
+    }
     /**
      * addes a point to data stracture
      * @param p
@@ -21,10 +24,10 @@ public class TotalHeap {
     public void add(Point p){
         if(_midean==null)   //if the array is empty
         {
-            _midean=p;
+            _midean=new Node(p);
         }
         else {
-            if (p.getY() > _midean.getY()) {    //if the given point is bigger than the middiean
+            if (p.getY() > _midean.get_point().getY()) {    //if the given point is bigger than the middiean
                 _minHeap.insert(p);
             }
             else {                              //given point is larger or smaller than the middiean
@@ -34,7 +37,7 @@ public class TotalHeap {
         }
     }
     public Point get_midean(){
-        return _midean;
+        return _midean.get_point();
     }
     /**
      * returns the median points in the heap
@@ -42,7 +45,7 @@ public class TotalHeap {
      */
     public Point extractMedian()
     {
-        Point ans=_midean;
+        Point ans=_midean.get_point();
         _midean=_maxHeap.extract();
         syncSize();
         return  ans;
@@ -55,17 +58,40 @@ public class TotalHeap {
     public int getSize(){
         return _maxHeap.get_size()+_minHeap.get_size();
     }
+    public Point[] getMedianPoints(int k)
+    {
+        TotalHeap local= new TotalHeap(k);
+        Node[] ans=new Node[k];
+        Point[] points=new Point[k];
+        local.add(this.extractMedian());
+        for(int i=0;i<k;i++){
+            ans[i]=local.extractMedianNode();
+            local.add(ans[i].getLeft().get_point());
+            local.add(ans[i].getRight().get_point());
+        }
+        for (int i=0;i<k;i++){
+            add(ans[i].get_point());
+            points[i]=ans[i].get_point();
+        }
+        return points;
+    }
+    private Node extractMedianNode(){
+        Node ans=_midean;
+        _midean=_maxHeap.extract();
+        syncSize();
+        return  ans;
+    }
     /**
      * Syncs the size of both heaps
      */
     private void syncSize(){
         if (_maxHeap.get_size() > _minHeap.get_size()+1) {  // make the size differ by max 1
-            Point temp=_midean;
+            Node temp=_midean;
             _midean=_maxHeap.extract();
             _minHeap.insert(temp);
         }
         if (_minHeap.get_size() > _maxHeap.get_size()+1) {
-            Point temp=_midean;
+            Node temp=_midean;
             _midean=_minHeap.extract();
             _maxHeap.insert(temp);
         }

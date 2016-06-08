@@ -11,9 +11,12 @@ public class MinHeap extends Heap{
         int left = getLeftInd(curr);
         int right = getRightInd(curr);
         int smallest = curr;
-        if (left <= _parr.length && _parr[smallest].getY() > _parr[left].getY())
+        if (left <= _nodes.length && (_nodes[smallest].get_point().getY() > _nodes[left].get_point().getY()||
+                (_nodes[smallest].get_point().getY() == _nodes[left].get_point().getY()&&_nodes[smallest].get_point().getX()>_nodes[left].get_point().getX())))
             smallest = left;
-        if (right <= _parr.length && _parr[smallest].getY() > _parr[right].getY())
+        if (right <= _nodes.length && (_nodes[smallest].get_point().getY() > _nodes[right].get_point().getY()||
+                (_nodes[smallest].get_point().getY() == _nodes[right].get_point().getY()&&_nodes[smallest].get_point().getX()>_nodes[right].get_point().getX())))
+
             smallest = right;
         if (smallest != curr) {
             switchvals(curr, smallest);

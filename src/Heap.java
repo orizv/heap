@@ -4,51 +4,74 @@
 public abstract class Heap {
 
     private int _size;
-    protected Point[] _parr;
+
+    protected Node[] _nodes;
     public Heap(int n){
         _size=0;
-        _parr=new Point[n+10*(int)Math.log(2)];
+        _nodes=new Node[n+10*(int)Math.log(n)+1];
     }
     public Heap(Point[] parr){
+
         int n=parr.length;
-        _parr=new Point[n+10*(int)Math.log(n)+1];
+
+        _nodes=new Node[n+10*(int)Math.log(n)+1];
+
         for (int i=0;i<parr.length;i++){
             insert(parr[i]);
         }
     }
     public int get_size(){return _size;}
+
     public void insert(Point p) {
-        _parr[_size]=new Point(p);
+        _nodes[_size]= new Node(p);
+        heapify(_size);
+        _size++;
+    }
+    public void insert(Node n){
+        _nodes[_size]= n;
+        if(_nodes[getParentInd(_size)].getLeft()==null) {
+            _nodes[getParentInd(_size)].setLeft(n);
+        }
+        else{
+            _nodes[getParentInd(_size)].setRight(n);
+        }
         heapify(_size);
         _size++;
     }
     public abstract void heapify(int curr);
 
-    public Point extract(){
-        if(_size==0)
-            return null;
-        Point ans=_parr[0];
+
+    public Node extract(){
+        if(_size==0) return null;
+        Node ans=_nodes[0];
         _size--;
-        _parr[0]=_parr[_size];
+        _nodes[0]=_nodes[_size];
         heapify(0);
         return ans;
     }
-    public Point getTop(){
+
+    public Node getTop(){
         if(_size==0)
             return null;
-        Point ans=_parr[0];
-        return ans;
+        return _nodes[0];
     }
-
     /**
      * switches the values in the point array of n1 and n2
      * @param n1 first index
      * @param n2 second index
      */
     protected void switchvals(int n1,int n2){
-        Point temp=_parr[n1];
-        _parr[n1]=_parr[n2];
-        _parr[n2]=_parr[n1];
+        //swtich val
+        Node t=_nodes[n1];
+        _nodes[n1]=_nodes[n2];
+        _nodes[n2]=t;
+        //switch sons
+        t=_nodes[n1].getLeft();
+        _nodes[n1].setLeft(_nodes[n2].getLeft());
+        _nodes[n2].setLeft(t);
+        t=_nodes[n1].getRight();
+        _nodes[n1].setRight(_nodes[n2].getRight());
+        _nodes[n2].setRight(t);
     }
 
     /**

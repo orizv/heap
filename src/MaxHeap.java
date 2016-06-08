@@ -15,12 +15,14 @@ public class MaxHeap extends Heap {
         int left=getLeftInd(curr);
         int right=getRightInd(curr);
         int largest=curr;
-        if(left<=_parr.length && (_parr[largest].getY()<_parr[left].getY()||
-                _parr[largest].getY()==_parr[left].getY()&&_parr[largest].getX()<_parr[left].getX()))
-            largest=left;
-        if(right<=_parr.length && _parr[largest].getY()<_parr[right].getY()||
-                _parr[largest].getY()==_parr[right].getY()&&_parr[largest].getX()<_parr[right].getX())
-            largest=right;
+        if(left<=_nodes.length && (_nodes[largest].get_point().getY()<_nodes[left].get_point().getY()||
+                (_nodes[largest].get_point().getY()==_nodes[left].get_point().getY()&&_nodes[largest].get_point().getX()<_nodes[left].get_point().getX()))) {
+            largest = left;
+        }
+        if(right<=_nodes.length && _nodes[largest].get_point().getY()<_nodes[right].get_point().getY()||
+                (_nodes[largest].get_point().getY()==_nodes[right].get_point().getY()&&_nodes[largest].get_point().getX()<_nodes[right].get_point().getX())) {
+            largest = right;
+        }
         if(largest!=curr){
             switchvals(curr,largest);
             heapify(largest);
