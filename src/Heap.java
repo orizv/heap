@@ -75,7 +75,7 @@ public abstract class Heap {
     }
 
     /**
-     * returns the parrent of given point
+     * returns the parent of given point
      * @param ind index of point to look for
      * @return index of the parrent of ind
      */

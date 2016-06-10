@@ -27,7 +27,7 @@ public class TotalHeap {
             _midean=new Node(p);
         }
         else {
-            if (p.getY() > _midean.get_point().getY()) {    //if the given point is bigger than the middiean
+            if (p.getY() > _midean.getPoint().getY()) {    //if the given point is bigger than the middiean
                 _minHeap.insert(p);
             }
             else {                              //given point is larger or smaller than the middiean
@@ -37,7 +37,7 @@ public class TotalHeap {
         }
     }
     public Point get_midean(){
-        return _midean.get_point();
+        return _midean.getPoint();
     }
     /**
      * returns the median points in the heap
@@ -45,7 +45,7 @@ public class TotalHeap {
      */
     public Point extractMedian()
     {
-        Point ans=_midean.get_point();
+        Point ans=_midean.getPoint();
         _midean=_maxHeap.extract();
         syncSize();
         return  ans;
@@ -66,12 +66,12 @@ public class TotalHeap {
         local.add(this.extractMedian());
         for(int i=0;i<k;i++){
             ans[i]=local.extractMedianNode();
-            local.add(ans[i].getLeft().get_point());
-            local.add(ans[i].getRight().get_point());
+            local.add(ans[i].getLeft().getPoint());
+            local.add(ans[i].getRight().getPoint());
         }
         for (int i=0;i<k;i++){
-            add(ans[i].get_point());
-            points[i]=ans[i].get_point();
+            add(ans[i].getPoint());
+            points[i]=ans[i].getPoint();
         }
         return points;
     }

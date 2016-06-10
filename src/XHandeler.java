@@ -25,7 +25,7 @@ public class XHandeler {
         _isDeleted = new boolean[arr.length];
         for(int i=0;i<arr.length;i++)
             _isDeleted[i]=false;
-        _addedDeleted=new boolean[10 * (int) Math.log(arr.length];
+        _addedDeleted=new boolean[10 * (int) Math.log(arr.length)];
         for (int i=0;i<_addedDeleted.length;i++)
             _addedDeleted[i]=true;
         _numAdded = 0;
