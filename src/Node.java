@@ -3,7 +3,7 @@
  */
 public class Node {
 
-    private Point _point;
+    protected Point _point;
     private Node _left;
     private Node _right;
 
