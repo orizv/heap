@@ -1,3 +1,5 @@
+import java.lang.reflect.Method;
+
 /**
  * Created by user on 09/06/2016.
  */
@@ -5,8 +7,11 @@ public class BST {
 
     private BSTNode _root;
 
+    /**
+     * empty constructor;
+     */
     public BST (){
-
+        _root=null;
     }
 
     /**
@@ -94,33 +99,50 @@ public class BST {
 
     }
 
+    /**
+     * a method to remove a point from the tree
+     * @param p - the points that needed to be removed
+     */
     public void remove(Point p){
         BSTNode del =search(p);
-        remove(del);
+        remove(del);//calls a recursive function
     }
 
+    /**
+     * a method to remove a point from the tree recursivly
+     * @param t - the node that contains the point
+     */
     private void remove(BSTNode t){
-        BSTNode swap=findNextInLine(t);
-        t.descreseSum(t.getPoint().getY());
-        t.setPoint(swap.getPoint());
-        t.addToSum(t.getPoint().getY());
-        if (swap.isLeaf()){
-            if (swap.getParent().getRight().equals(swap))
-                swap.getParent().setRight(null);
-            else
-                swap.getParent().setLeft(null);
-            if (swap.getParent().getLeft()==null&&swap.getParent().getRight()==null)
-                swap.getParent().makeLeaf(true);
-            swap.setParent(null);
+        if (t.isLeaf()){ // checks if is able to delete without harming the tree structure
+            this.delete(t);
         }
+        else {
+            BSTNode swap = findNextInLine(t); // finds the points successor so it will replace the point in the position in the middle of
+            t.descreseSum(t.getPoint().getY());
+            t.setPoint(swap.getPoint());
+            t.addToSum(t.getPoint().getY());
+            remove(swap);// continue to delete the successor from its place untill it finds a leaf
+        }
+    }
+
+    /**
+     * // deleting from the tree hierarchy
+     * @param t the node to be deleted
+     */
+    private void delete(BSTNode t){
+        if (t.getParent().getRight().equals(t))
+            t.getParent().setRight(null);
         else
-            remove (swap);
+            t.getParent().setLeft(null);
+        if (t.getParent().getLeft()==null&&t.getParent().getRight()==null)
+            t.getParent().makeLeaf(true);
+        t.setParent(null);
     }
 
     /**
      * find the successor of a BST node (either the minimum or the maximum)
      * @param t-the BSTNode of whom need to find the successor
-     * @return
+     * @return the successor
      */
     private BSTNode findNextInLine(BSTNode t){
         if (t.getLeft()!=null)
@@ -147,6 +169,7 @@ public class BST {
             ans = t;
         return ans;
     }
+
     /**
      * in case of deletion finds the successor - finds the lower successor
      * @param t - the BSTNode that needed to be replaced
@@ -163,6 +186,7 @@ public class BST {
             ans = t;
         return ans;
     }
+
     /**
      * searching a point in the tree
      * @param p- point to search
@@ -197,16 +221,125 @@ public class BST {
         return ans;
     }
 
-
+    /**
+     * an method that finds and return all the points in a certain range of x's
+     * @param left - the lower bound of x's
+     * @param right - the upper boud of x's
+     * @return an array with the points in the range
+     */
     public Point[] getPointsInRange(int left, int right){
-
+        Point[] ans = new Point[numPointsInRange(left, right)];
+        BSTNode parent=getPrimalParent(_root,left,right);
+        fillArrayInRange(parent,ans,left,right,0);
+        return ans;
     }
 
+    /** need to fix - not correct!!!!
+     * a recursive method to fill an array with point within a certain range
+     * @param ins - the current node to check if
+     * @param p
+     * @param left
+     * @param right
+     * @param filled
+     */
+    private void fillArrayInRange (BSTNode ins,Point[] p, int left, int right,int filled) {
+        if (ins.getLeft() != null) {
+            if (ins.getLeft().getPoint().getX() >= left) {
+                fillArrayInRange((BSTNode) ins.getLeft(), p, left, right, filled);
+                filled++;
+            }
+        }
+        if (ins.getRight() !=null) {
+            if (ins.getRight().getPoint().getX() <= right) {
+                fillArrayInRange((BSTNode) ins.getLeft(), p, left, right, filled+1);
+            }
+        }
+        p[filled]=new Point(ins.getPoint());
+    }
+
+    /**
+     * a method to count the number of points with x values within a certain range
+     * @param left the lower bound
+     * @param right -the upper bound
+     * @return int
+     */
     public int numPointsInRange(int left, int right){
-
+        BSTNode parent=getPrimalParent(_root,left,right);
+        BSTNode curLeft=(BSTNode) parent.getLeft();
+        BSTNode curRight = (BSTNode)parent.getRight();
+        int size=parent.getSize();
+        while (curLeft.getPoint().getX()!=left&&curRight.getPoint().getX()!=right){
+            if (curLeft.getPoint().getX()>left)
+                curLeft=(BSTNode) curLeft.getLeft();
+            else if (curLeft.getPoint().getX()<left){
+                size=size-((BSTNode)curLeft.getLeft()).getSize();
+                curLeft=(BSTNode)curLeft.getRight();
+            }
+            if (curRight.getPoint().getX()<right)
+                curRight=(BSTNode)curRight.getRight();
+            else if(curRight.getPoint().getX()>right){
+                size=size-((BSTNode)curRight.getRight()).getSize();
+                curLeft=(BSTNode)curRight.getLeft();
+            }
+        }
+        if (curLeft.getLeft()!=null)
+            size=size-((BSTNode)curLeft.getLeft()).getSize();
+        if (curRight.getRight()!=null)
+            size=size-((BSTNode)curRight.getRight()).getSize();
+        return size;
     }
 
+    /**
+     * returns a summery of all the y points in range
+     * @param left - the lower bound
+     * @param right - the upper bound
+     * @return int -the summery of all the y values within a range
+     */
     public int sumPointsInRange(int left, int right){
-
+        BSTNode parent=getPrimalParent(_root,left,right);
+        BSTNode curLeft=(BSTNode) parent.getLeft();
+        BSTNode curRight = (BSTNode)parent.getRight();
+        int sum=parent.getSum();
+        while (curLeft.getPoint().getX()!=left&&curRight.getPoint().getX()!=right){
+            if (curLeft.getPoint().getX()>left)
+                curLeft=(BSTNode) curLeft.getLeft();
+            else if (curLeft.getPoint().getX()<left){
+                sum=sum-((BSTNode)curLeft.getLeft()).getSum();
+                curLeft=(BSTNode)curLeft.getRight();
+            }
+            if (curRight.getPoint().getX()<right)
+                curRight=(BSTNode)curRight.getRight();
+            else if(curRight.getPoint().getX()>right){
+                sum=sum-((BSTNode)curRight.getRight()).getSum();
+                curLeft=(BSTNode)curRight.getLeft();
+            }
+        }
+        if (curLeft.getLeft()!=null)
+            sum=sum-((BSTNode)curLeft.getLeft()).getSum();
+        if (curRight.getRight()!=null)
+            sum=sum-((BSTNode)curRight.getRight()).getSum();
+        return sum;
     }
+
+    /**
+     * a method that returns the first parent of both left and right range
+     * @param curr- the current node to check
+     * @param left - the lower bound
+     * @param right - the upper bound
+     * @return BSTNode - the first parent of both of them.
+     */
+    private BSTNode getPrimalParent(BSTNode curr, int left, int right){
+        BSTNode ans;
+        if (curr.getPoint().getX()<=right)
+            if(curr.getPoint().getX()>=left)
+                ans=curr;
+            else
+                ans=getPrimalParent((BSTNode)curr.getRight(),left,right);
+        else
+            ans=getPrimalParent((BSTNode)curr.getLeft(),left,right);
+        return ans;
+    }
+
+
+    
 }
