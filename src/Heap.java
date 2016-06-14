@@ -5,11 +5,22 @@ public abstract class Heap {
 
     private int _size;
 
+
     protected Node[] _nodes;
+
+    /**
+     * start an empty heap
+     * @param n the size of the heap
+     */
     public Heap(int n){
         _size=0;
         _nodes=new Node[n+10*(int)Math.log(n)+1];
     }
+
+    /**
+     * Make Heap from array
+     * @param parr array of point to heap
+     */
     public Heap(Point[] parr){
 
         int n=parr.length;
@@ -17,16 +28,36 @@ public abstract class Heap {
         _nodes=new Node[n+10*(int)Math.log(n)+1];
 
         for (int i=0;i<parr.length;i++){
-            insert(parr[i]);
+            if(parr[i]!=null) {
+                _nodes[i] = new Node(parr[i]);
+                _size++;
+            }
+        }
+        for(int i=_size/2;i>0;i--){
+            heapify(i);
         }
     }
+
+    /**
+     *
+     * @return the number of elements in the heap
+     */
     public int get_size(){return _size;}
 
+    /**
+     * insert a new point to the heap
+     * @param p point to add
+     */
     public void insert(Point p) {
         _nodes[_size]= new Node(p);
         heapify(_size);
         _size++;
     }
+
+    /**
+     * insert new node to the heap
+     * @param n node to add
+     */
     public void insert(Node n){
         _nodes[_size]= n;
         if(_nodes[getParentInd(_size)].getLeft()==null) {
@@ -38,9 +69,18 @@ public abstract class Heap {
         heapify(_size);
         _size++;
     }
+
+    /**
+     * heapify should be made by the selected implementetaion
+     * @param curr
+     */
     public abstract void heapify(int curr);
 
 
+    /**
+     * remove current top of the heap
+     * @return node
+     */
     public Node extract(){
         if(_size==0) return null;
         Node ans=_nodes[0];
@@ -50,6 +90,10 @@ public abstract class Heap {
         return ans;
     }
 
+    /**
+     * return current top of the node without removing it
+     * @return  the top of the heap node
+     */
     public Node getTop(){
         if(_size==0)
             return null;

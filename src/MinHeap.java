@@ -7,6 +7,10 @@ public class MinHeap extends Heap{
         super(parr);
     }
     public MinHeap(int n) {super(2*n);}
+    /**
+     * standard heap heapify function
+     * @param curr current index in the array
+     */
     public void heapify(int curr) {
         int left = getLeftInd(curr);
         int right = getRightInd(curr);

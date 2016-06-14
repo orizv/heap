@@ -5,8 +5,8 @@ public class YHandeler {
 
     TotalHeap _heap;
 
-    public  YHandeler(Point[] points){
-        _heap=new TotalHeap(points);
+    public  YHandeler(Point[] points,Point median){
+        _heap=new TotalHeap(points,median);
     }
     public Point extractMedian(){
         return _heap.extractMedian();

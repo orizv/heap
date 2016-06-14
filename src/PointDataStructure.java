@@ -7,7 +7,7 @@ public class PointDataStructure implements PDT {
 	//////////////// DON'T DELETE THIS CONSTRUCTOR ////////////////
 	public PointDataStructure(Point[] points, Point initialYMedianPoint)
 	{
-		_yHandler=new YHandeler(points);
+		_yHandler=new YHandeler(points,initialYMedianPoint);
 		_xHandler=new XHandeler(points);
 		addPoint(initialYMedianPoint);
 	}

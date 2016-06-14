@@ -6,12 +6,25 @@ public class TotalHeap {
     private MaxHeap _maxHeap;
     private Node _midean;
 
-    public TotalHeap(Point[] points){
+    public TotalHeap(Point[] points,Point median){
         _maxHeap=new MaxHeap(points.length);
         _minHeap=new MinHeap(points.length);
-        for(int i=0;i<points.length;i++){
-            add(points[i]);
+        Point[] minPointArr= new Point[points.length/2];
+        int minInd=0;
+        Point[] maxPointArr= new Point[points.length/2];
+        int maxInd=0;
+        for (int i=0;i<points.length;i++){
+            if(points[i].getY()>=median.getX()){
+                maxPointArr[maxInd]=points[i];
+                maxInd++;
+            }
+            else{
+                minPointArr[minInd]=points[i];
+                minInd++;
+            }
+
         }
+
     }
     public TotalHeap(int n){
         _minHeap=new MinHeap(n/2+1);
