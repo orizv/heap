@@ -26,20 +26,18 @@ public class PointDataStructure implements PDT {
 
 	@Override
 	public int numOfPointsInRange(int XLeft, int XRight) {
-		// TODO Auto-generated method stub
-		return 0;
+		return _xHandler.numOfPointsInRange(XLeft,XRight);
 	}
 
 	@Override
 	public double averageHeightInRange(int XLeft, int XRight) {
-		// TODO Auto-generated method stub
-		return 0;
+		return _xHandler.averageHeightInRange(XLeft, XRight);
 	}
 
 	@Override
 	public void removeMedianPoint() {
-		 _yHandler.extractMedian();
-
+		 Point del =_yHandler.extractMedian();
+		_xHandler.remove(del);
 	}
 
 	@Override
