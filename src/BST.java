@@ -231,15 +231,15 @@ public class BST {
         BSTNode parent=getPrimalParent(_root,left,right);
         Queue points = new Queue();
         points.enqueue(parent);
-        Point[] ans =fillArrayInRange(left,right,0);
+        Point[] ans =fillArrayInRange(left,right,points);
         return ans;
     }
 
     /** need to fix - not correct!!!!
      * a recursive method to fill an array with point within a certain range
-     * @param left
-     * @param right
-     * @param points
+     * @param left - the lower bound of the points neede to be returned
+     * @param right - the upper bound
+     * @param points - a queue that holds the BSTNodes in the range and help to get the next in order.
      */
     private Point[] fillArrayInRange (int left, int right,Queue points) {
         int filled=0;
@@ -247,9 +247,9 @@ public class BST {
         while (!(points.isEmpty())){
             BSTNode cur = points.dequeue();
             if (cur.getLeft().getPoint().getX() >= left)
-                points.enqueue(cur.getLeft());
+                points.enqueue((BSTNode)cur.getLeft());
             if (cur.getRight().getPoint().getX() <= right)
-                points.enqueue(cur.getRight());
+                points.enqueue((BSTNode)cur.getRight());
             ans[filled]=new Point (cur.getPoint());
             filled++;
         }
@@ -339,6 +339,41 @@ public class BST {
         return ans;
     }
 
+    /**
+     * a method that find the minimum X in the tree.
+     * @return integer
+     */
+    private int findMin(){
+        BSTNode cur = _root;
+        while (cur.getLeft()!=null){
+            cur=(BSTNode)cur.getLeft();
+        }
+        return cur.getPoint().getX();
+    }
 
+    /**
+     * a method that find the maximum X in the tree.
+     * @return integer
+     */
+    private int findMax(){
+        BSTNode cur = _root;
+        while (cur.getRight()!=null){
+            cur=(BSTNode)cur.getRight();
+        }
+        return cur.getPoint().getX();
+    }
+
+    /**
+     * a method that gets all the points;
+     * @return an array with all the points.
+     */
+    public Point[] getAllPointsInRange(){
+        int left = this.findMin();
+        int right = this.findMax();
+        Queue points= new Queue();
+        points.enqueue(_root);
+        Point[] ans = fillArrayInRange(left,right,points);
+        return ans;
+    }
     
 }

@@ -14,7 +14,7 @@ public class Queue {
      * Insert a new point to the queue
      * @param p point to insert
      */
-    public void enqueue(Point p){
+    public void enqueue(BSTNode p){
         if (end==null){
             end=new QueueNode(p);
             start=end;
@@ -31,11 +31,11 @@ public class Queue {
      * get the first queued point from the queue
      * @return point
      */
-    public Point dequeue(){
+    public BSTNode dequeue(){
         if(start==null)
             return null;
         else {
-            Point ans=start.getData();
+            BSTNode ans=start.getData();
             start=start.get_next();
             return ans;
         }
