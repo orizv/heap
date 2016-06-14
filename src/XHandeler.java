@@ -54,4 +54,12 @@ public class XHandeler {
     public double averageHeightInRange(int XLeft, int XRight){
         return (((double)tree.sumPointsInRange(XLeft,XRight))/this.numOfPointsInRange(XLeft,XRight));
     }
+
+    public Point[] getPointsInRange(int Xleft,int Xright){
+        return tree.getPointsInRange(Xleft, Xright);
+    }
+
+    public Point[] getAllPoints(){
+        return  tree.getAllPointsInRange();
+    }
 }

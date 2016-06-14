@@ -20,8 +20,7 @@ public class PointDataStructure implements PDT {
 
 	@Override
 	public Point[] getPointsInRange(int XLeft, int XRight) {
-		// TODO Auto-generated method stub
-		return null;
+		return _xHandler.getPointsInRange(XLeft, XRight);
 	}
 
 	@Override
@@ -47,8 +46,7 @@ public class PointDataStructure implements PDT {
 
 	@Override
 	public Point[] getAllPoints() {
-		// TODO Auto-generated method stub
-		return null;
+		return _xHandler.getAllPoints();
 	}
 
 	//TODO: add members, methods, etc.
