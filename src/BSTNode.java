@@ -54,4 +54,8 @@ public class BSTNode extends Node {
     public BSTNode getParent(){return _parent;}
     public boolean isLeaf(){return _isLeaf;}
     public void setPoint(Point p){this._point=p;}
+
+    public String toString(){
+        return _point.getX()+" "+_point.getY()+" size="+_size;
+    }
 }

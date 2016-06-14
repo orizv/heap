@@ -21,7 +21,7 @@ public class BST {
      */
     public void initialize(Point[] points){
         if (points!=null) {
-            int last = points.length;
+            int last = points.length-1;
             int first = 0;
             _root = new BSTNode(points[(last + first) / 2]); // initialize the root
             initialize(points, _root, first, last); // calls another method
@@ -246,9 +246,9 @@ public class BST {
         Point[] ans = new Point[numPointsInRange(left, right)];
         while (!(points.isEmpty())){
             BSTNode cur = points.dequeue();
-            if (cur.getLeft().getPoint().getX() >= left)
+            if (cur.getLeft()!=null&&cur.getLeft().getPoint().getX() >= left)
                 points.enqueue((BSTNode)cur.getLeft());
-            if (cur.getRight().getPoint().getX() <= right)
+            if (cur.getRight()!=null&&cur.getRight().getPoint().getX() <= right)
                 points.enqueue((BSTNode)cur.getRight());
             ans[filled]=new Point (cur.getPoint());
             filled++;

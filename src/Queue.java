@@ -37,6 +37,9 @@ public class Queue {
         else {
             BSTNode ans=start.getData();
             start=start.get_next();
+            if(start==null)
+                end=null;
+
             return ans;
         }
     }

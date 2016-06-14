@@ -9,9 +9,9 @@ public class TotalHeap {
     public TotalHeap(Point[] points,Point median){
         _maxHeap=new MaxHeap(points.length);
         _minHeap=new MinHeap(points.length);
-        Point[] minPointArr= new Point[points.length/2];
+        Point[] minPointArr= new Point[points.length];
         int minInd=0;
-        Point[] maxPointArr= new Point[points.length/2];
+        Point[] maxPointArr= new Point[points.length];
         int maxInd=0;
         for (int i=0;i<points.length;i++){
             if(points[i].getY()>=median.getX()){
