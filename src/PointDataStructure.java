@@ -9,7 +9,6 @@ public class PointDataStructure implements PDT {
 	{
 		_yHandler=new YHandeler(points,initialYMedianPoint);
 		_xHandler=new XHandeler(points);
-		addPoint(initialYMedianPoint);
 	}
 
 	@Override

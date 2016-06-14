@@ -41,7 +41,7 @@ public class BST {
             initialize(points,(BSTNode)n.getLeft(),first,mid-1); //as long as there is more points call the recursive method with wht is left
             initialize(points,(BSTNode)n.getRight(),mid+1,last);
         }
-        else if(n.compareToPoint(points[last])!=0){//if there is only one or 2 more point to insert
+        else if(n.compareToPoint(points[last])!=0&n.getParent().compareToPoint(points[last])!=0){//if there is only one or 2 more point to insert
             if (n.compareToPoint(points[last])>0) {//checks if to insert to the left or to the right
                 n.setLeft(new BSTNode(points[last]));
                 ((BSTNode)n.getLeft()).setParent(n);
@@ -267,23 +267,34 @@ public class BST {
         BSTNode curLeft=(BSTNode) parent.getLeft();
         BSTNode curRight = (BSTNode)parent.getRight();
         int size=parent.getSize();
-        while (curLeft.getPoint().getX()!=left&&curRight.getPoint().getX()!=right){
-            if (curLeft.getPoint().getX()>left)
-                curLeft=(BSTNode) curLeft.getLeft();
-            else if (curLeft.getPoint().getX()<left){
-                size=size-((BSTNode)curLeft.getLeft()).getSize();
-                curLeft=(BSTNode)curLeft.getRight();
+        boolean ableLeft=true,ableRight=true;
+        while ((curLeft!=null&&curLeft.getPoint().getX()!=left&ableLeft)|(curRight!=null&&curRight.getPoint().getX()!=right&ableRight)){
+            if(curLeft!=null) {
+                if (curLeft.getPoint().getX() > left & ableLeft) {
+                    if (curLeft.getLeft() == null)
+                        ableLeft = false;
+                    curLeft = (BSTNode) curLeft.getLeft();
+                } else if (curLeft.getPoint().getX() < left) {
+                    if(curLeft.getLeft()!=null)
+                        size = size - ((BSTNode) curLeft.getLeft()).getSize();
+                    curLeft = (BSTNode) curLeft.getRight();
+                }
             }
-            if (curRight.getPoint().getX()<right)
-                curRight=(BSTNode)curRight.getRight();
-            else if(curRight.getPoint().getX()>right){
-                size=size-((BSTNode)curRight.getRight()).getSize();
-                curLeft=(BSTNode)curRight.getLeft();
+            if (curRight!=null) {
+                if (curRight != null && curRight.getPoint().getX() < right & ableRight) {
+                    if (curRight.getRight() == null)
+                        ableRight = false;
+                    curRight = (BSTNode) curRight.getRight();
+                } else if (curRight.getPoint().getX() > right) {
+                    if(curRight.getRight()!=null)
+                    size = size - ((BSTNode) curRight.getRight()).getSize();
+                    curRight = (BSTNode) curRight.getLeft();
+                }
             }
         }
-        if (curLeft.getLeft()!=null)
+        if (curLeft!=null&&curLeft.getLeft()!=null)
             size=size-((BSTNode)curLeft.getLeft()).getSize();
-        if (curRight.getRight()!=null)
+        if (curRight!=null&&curRight.getRight()!=null)
             size=size-((BSTNode)curRight.getRight()).getSize();
         return size;
     }
