@@ -228,33 +228,32 @@ public class BST {
      * @return an array with the points in the range
      */
     public Point[] getPointsInRange(int left, int right){
-        Point[] ans = new Point[numPointsInRange(left, right)];
         BSTNode parent=getPrimalParent(_root,left,right);
-        fillArrayInRange(parent,ans,left,right,0);
+        Queue points = new Queue();
+        points.enqueue(parent);
+        Point[] ans =fillArrayInRange(left,right,0);
         return ans;
     }
 
     /** need to fix - not correct!!!!
      * a recursive method to fill an array with point within a certain range
-     * @param ins - the current node to check if
-     * @param p
      * @param left
      * @param right
-     * @param filled
+     * @param points
      */
-    private void fillArrayInRange (BSTNode ins,Point[] p, int left, int right,int filled) {
-        if (ins.getLeft() != null) {
-            if (ins.getLeft().getPoint().getX() >= left) {
-                fillArrayInRange((BSTNode) ins.getLeft(), p, left, right, filled);
-                filled++;
-            }
+    private Point[] fillArrayInRange (int left, int right,Queue points) {
+        int filled=0;
+        Point[] ans = new Point[numPointsInRange(left, right)];
+        while (!(points.isEmpty())){
+            BSTNode cur = points.dequeue();
+            if (cur.getLeft().getPoint().getX() >= left)
+                points.enqueue(cur.getLeft());
+            if (cur.getRight().getPoint().getX() <= right)
+                points.enqueue(cur.getRight());
+            ans[filled]=new Point (cur.getPoint());
+            filled++;
         }
-        if (ins.getRight() !=null) {
-            if (ins.getRight().getPoint().getX() <= right) {
-                fillArrayInRange((BSTNode) ins.getLeft(), p, left, right, filled+1);
-            }
-        }
-        p[filled]=new Point(ins.getPoint());
+        return ans;
     }
 
     /**
