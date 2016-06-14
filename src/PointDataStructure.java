@@ -41,7 +41,7 @@ public class PointDataStructure implements PDT {
 
 	@Override
 	public Point[] getMedianPoints(int k) {
-		_yHandler.getMedianPoints(k);
+		return _yHandler.getMedianPoints(k);
 	}
 
 	@Override
