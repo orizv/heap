@@ -69,10 +69,6 @@ public class TotalHeap {
             local.add(ans[i].getLeft().get_point());
             local.add(ans[i].getRight().get_point());
         }
-        for (int i=0;i<k;i++){
-            add(ans[i].get_point());
-            points[i]=ans[i].get_point();
-        }
         return points;
     }
     private Node extractMedianNode(){
