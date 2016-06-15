@@ -25,13 +25,13 @@ public class XHandeler {
         int n = arr.length;
         Point[] arr1;
         boolean sorted = true;
-        for (int i = 0; i < n - 1 & sorted; i++) {
-            if (arr[i].getX() < arr[i + 1].getX())
+        for (int i = 0; i < n-1  & sorted; i++) {
+            if (arr[i].getX() > arr[i + 1].getX())
                 sorted = false;
         }
         if (sorted == false) {
             arr1= new Point[n];
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i <= n-1; i++) {
                 arr1[arr[i].getX()] = arr[i];
             }
         }

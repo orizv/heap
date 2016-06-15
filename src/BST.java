@@ -231,7 +231,9 @@ public class BST {
         BSTNode parent=getPrimalParent(_root,left,right);
         Queue points = new Queue();
         points.enqueue(parent);
-        Point[] ans =fillArrayInRange(left,right,points);
+        Point[] ans = new Point[numPointsInRange(left, right)];
+        fillArrayInRange(ans,left,right,points,0);
+
         return ans;
     }
 
@@ -241,18 +243,38 @@ public class BST {
      * @param right - the upper bound
      * @param points - a queue that holds the BSTNodes in the range and help to get the next in order.
      */
-    private Point[] fillArrayInRange (int left, int right,Queue points) {
-        int filled=0;
-        Point[] ans = new Point[numPointsInRange(left, right)];
+    private Point[] fillArrayInRange (Point[] ans, int left, int right,Queue points, int filled) {
+        Queue check =new Queue();
         while (!(points.isEmpty())){
             BSTNode cur = points.dequeue();
-            if (cur.getLeft()!=null&&cur.getLeft().getPoint().getX() >= left)
-                points.enqueue((BSTNode)cur.getLeft());
-            if (cur.getRight()!=null&&cur.getRight().getPoint().getX() <= right)
-                points.enqueue((BSTNode)cur.getRight());
+            if(cur.getLeft()!=null) {
+                if (cur.getLeft().getPoint().getX() >= left)
+                    points.enqueue((BSTNode) cur.getLeft());
+                else
+                    check.enqueue((BSTNode) cur.getLeft());
+            }
+            if(cur.getRight()!=null) {
+                if (cur.getRight().getPoint().getX() <= right)
+                    points.enqueue((BSTNode) cur.getRight());
+                else
+                    check.enqueue((BSTNode) cur.getRight());
+            }
             ans[filled]=new Point (cur.getPoint());
             filled++;
         }
+        while  (!(check.isEmpty())){
+            BSTNode cur = check.dequeue();
+            if(cur!=null) {
+                if (cur.getPoint().getX() < left)
+                    check.enqueue((BSTNode) cur.getRight());
+                else if (cur != null && cur.getPoint().getX() > right)
+                    check.enqueue((BSTNode) cur.getLeft());
+                else
+                    points.enqueue(cur);
+            }
+        }
+        if (!(points.isEmpty()))
+            fillArrayInRange(ans,left,right,points,filled);
         return ans;
     }
 
@@ -267,28 +289,40 @@ public class BST {
         BSTNode curLeft=(BSTNode) parent.getLeft();
         BSTNode curRight = (BSTNode)parent.getRight();
         int size=parent.getSize();
-        boolean ableLeft=true,ableRight=true;
-        while ((curLeft!=null&&curLeft.getPoint().getX()!=left&ableLeft)|(curRight!=null&&curRight.getPoint().getX()!=right&ableRight)){
-            if(curLeft!=null) {
-                if (curLeft.getPoint().getX() > left & ableLeft) {
+        boolean ableLeft=(curLeft!=null),ableRight=(curRight!=null);
+        while ((ableLeft&&curLeft.getPoint().getX()!=left)|(ableRight&&curRight.getPoint().getX()!=right)){
+            if(ableLeft) {
+                if (curLeft.getPoint().getX() > left ) {
                     if (curLeft.getLeft() == null)
                         ableLeft = false;
-                    curLeft = (BSTNode) curLeft.getLeft();
-                } else if (curLeft.getPoint().getX() < left) {
+                    else
+                        curLeft = (BSTNode) curLeft.getLeft();
+                }
+                else if (curLeft.getPoint().getX() < left) {
+                    size=size-1;
                     if(curLeft.getLeft()!=null)
                         size = size - ((BSTNode) curLeft.getLeft()).getSize();
-                    curLeft = (BSTNode) curLeft.getRight();
+                    if (curLeft.getRight()!=null)
+                        curLeft = (BSTNode) curLeft.getRight();
+                    else
+                        ableLeft = false;
                 }
             }
-            if (curRight!=null) {
-                if (curRight != null && curRight.getPoint().getX() < right & ableRight) {
+            if (ableRight) {
+                if (curRight.getPoint().getX() < right ) {
                     if (curRight.getRight() == null)
                         ableRight = false;
-                    curRight = (BSTNode) curRight.getRight();
-                } else if (curRight.getPoint().getX() > right) {
+                    else
+                        curRight = (BSTNode) curRight.getRight();
+                }
+                else if (curRight.getPoint().getX() > right) {
+                    size=size-1;
                     if(curRight.getRight()!=null)
-                    size = size - ((BSTNode) curRight.getRight()).getSize();
-                    curRight = (BSTNode) curRight.getLeft();
+                        size = size - ((BSTNode) curRight.getRight()).getSize();
+                    if (curRight.getLeft()!=null)
+                        curRight = (BSTNode) curRight.getLeft();
+                    else
+                        ableRight=false;
                 }
             }
         }
@@ -310,23 +344,46 @@ public class BST {
         BSTNode curLeft=(BSTNode) parent.getLeft();
         BSTNode curRight = (BSTNode)parent.getRight();
         int sum=parent.getSum();
-        while (curLeft.getPoint().getX()!=left&&curRight.getPoint().getX()!=right){
-            if (curLeft.getPoint().getX()>left)
-                curLeft=(BSTNode) curLeft.getLeft();
-            else if (curLeft.getPoint().getX()<left){
-                sum=sum-((BSTNode)curLeft.getLeft()).getSum();
-                curLeft=(BSTNode)curLeft.getRight();
+        boolean ableLeft=(curLeft!=null),ableRight=(curRight!=null);
+        while ((ableLeft&&curLeft.getPoint().getX()!=left)|(ableRight&&curRight.getPoint().getX()!=right)){
+            if(ableLeft) {
+                if (curLeft.getPoint().getX() > left ) {
+                    if (curLeft.getLeft() == null)
+                        ableLeft = false;
+                    else
+                        curLeft = (BSTNode) curLeft.getLeft();
+                }
+                else if (curLeft.getPoint().getX() < left) {
+                    sum=sum-curLeft.getPoint().getY();
+                    if(curLeft.getLeft()!=null)
+                        sum = sum - ((BSTNode) curLeft.getLeft()).getSum();
+                    if (curLeft.getRight()!=null)
+                        curLeft = (BSTNode) curLeft.getRight();
+                    else
+                        ableLeft = false;
+                }
             }
-            if (curRight.getPoint().getX()<right)
-                curRight=(BSTNode)curRight.getRight();
-            else if(curRight.getPoint().getX()>right){
-                sum=sum-((BSTNode)curRight.getRight()).getSum();
-                curLeft=(BSTNode)curRight.getLeft();
+            if (ableRight) {
+                if (curRight.getPoint().getX() < right ) {
+                    if (curRight.getRight() == null)
+                        ableRight = false;
+                    else
+                        curRight = (BSTNode) curRight.getRight();
+                }
+                else if (curRight.getPoint().getX() > right) {
+                    sum=sum-curRight.getPoint().getY();
+                    if(curRight.getRight()!=null)
+                        sum = sum - ((BSTNode) curRight.getRight()).getSum();
+                    if (curRight.getLeft()!=null)
+                        curRight = (BSTNode) curRight.getLeft();
+                    else
+                        ableRight=false;
+                }
             }
         }
-        if (curLeft.getLeft()!=null)
+        if (curLeft!=null&&curLeft.getLeft()!=null)
             sum=sum-((BSTNode)curLeft.getLeft()).getSum();
-        if (curRight.getRight()!=null)
+        if (curRight!=null&&curRight.getRight()!=null)
             sum=sum-((BSTNode)curRight.getRight()).getSum();
         return sum;
     }
@@ -383,7 +440,8 @@ public class BST {
         int right = this.findMax();
         Queue points= new Queue();
         points.enqueue(_root);
-        Point[] ans = fillArrayInRange(left,right,points);
+        Point[] ans = new Point[_root.getSize()];
+        fillArrayInRange(ans,left,right,points,0);
         return ans;
     }
     
