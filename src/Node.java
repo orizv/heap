@@ -31,5 +31,6 @@ public class Node {
     public Node getRight(){return _right;}
     public void setLeft(Node n){_left= n;}
     public void setRight(Node n){_right=n;}
+    public String toString(){return _point.getX()+" "+ _point.getY();}
 
 }

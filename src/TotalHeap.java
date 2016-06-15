@@ -7,23 +7,30 @@ public class TotalHeap {
     private Node _midean;
 
     public TotalHeap(Point[] points,Point median){
-        _maxHeap=new MaxHeap(points.length);
-        _minHeap=new MinHeap(points.length);
         Point[] minPointArr= new Point[points.length];
         int minInd=0;
         Point[] maxPointArr= new Point[points.length];
         int maxInd=0;
         for (int i=0;i<points.length;i++){
-            if(points[i].getY()>=median.getX()){
+            if(points[i].getY()>=median.getY()){
+
+                if(points[i].getY()==median.getY()&&points[i].getY()==median.getY()) {
+                    _midean = new Node(points[i]);
+                }
+                else {
+                    minPointArr[minInd] = points[i];
+                    minInd++;
+                }
+            }
+            else{
                 maxPointArr[maxInd]=points[i];
                 maxInd++;
             }
-            else{
-                minPointArr[minInd]=points[i];
-                minInd++;
-            }
 
         }
+        _maxHeap=new MaxHeap(maxPointArr);
+        _minHeap=new MinHeap(minPointArr);
+        mediansons();
 
     }
     public TotalHeap(int n){
@@ -45,6 +52,22 @@ public class TotalHeap {
             }
             else {                              //given point is larger or smaller than the middiean
                 _maxHeap.insert(p);
+            }
+            syncSize();
+        }
+    }
+    public void add(Node n){
+        if(_midean==null){
+            _midean=n;
+            _midean.setLeft(null);
+            _midean.setRight(null);
+        }
+        else {
+            if(n.getPoint().getY()>_midean.getPoint().getY()){
+                _minHeap.insert(n);
+            }
+            else {
+                _maxHeap.insert(n);
             }
             syncSize();
         }
@@ -74,19 +97,33 @@ public class TotalHeap {
     public Point[] getMedianPoints(int k)
     {
         TotalHeap local= new TotalHeap(k);
-        Node[] ans=new Node[k];
+        TempNode[] ans=new TempNode[k];
         Point[] points=new Point[k];
-        local.add(this.extractMedian());
+        local.add(new TempNode(_midean));
         for(int i=0;i<k;i++){
-            ans[i]=local.extractMedianNode();
-            local.add(ans[i].getLeft().getPoint());
-            local.add(ans[i].getRight().getPoint());
+            ans[i]=(TempNode) (local.extractMedianNode());
+            if(ans[i].getPrevLeft()!=null)
+                local.add(new TempNode(ans[i].getPrevLeft()));
+            if(ans[i].getPrevRight()!=null)
+                local.add(new TempNode(ans[i].getPrevRight()));
+        }
+        for(int i=0;i<k;i++){
+            points[i]=ans[i].getPoint();
         }
         return points;
     }
     private Node extractMedianNode(){
         Node ans=_midean;
-        _midean=_maxHeap.extract();
+        _midean=null;
+
+
+        if(_maxHeap.get_size()>0)
+            _midean=_maxHeap.extract();
+        else {
+            if (_minHeap.get_size() > 0)
+                _midean = _minHeap.extract();
+        }
+
         syncSize();
         return  ans;
     }
@@ -94,16 +131,25 @@ public class TotalHeap {
      * Syncs the size of both heaps
      */
     private void syncSize(){
-        if (_maxHeap.get_size() > _minHeap.get_size()+1) {  // make the size differ by max 1
-            Node temp=_midean;
-            _midean=_maxHeap.extract();
-            _minHeap.insert(temp);
+        if(_maxHeap!=null&_minHeap!=null) {
+            if (_maxHeap.get_size() > _minHeap.get_size()) {  // make the size differ by max 1
+                Node temp = _midean;
+                _midean = _maxHeap.extract();
+                _minHeap.insert(temp);
+            }
+            if (_minHeap.get_size() > _maxHeap.get_size()+1) {
+                Node temp = _midean;
+                _midean = _minHeap.extract();
+                _maxHeap.insert(temp);
+            }
+            mediansons();
         }
-        if (_minHeap.get_size() > _maxHeap.get_size()+1) {
-            Node temp=_midean;
-            _midean=_minHeap.extract();
-            _maxHeap.insert(temp);
-        }
+    }
+    private void mediansons(){
+        if(_minHeap.getTop()!=null)
+            _midean.setRight(_minHeap.getTop());
+        if(_maxHeap.getTop()!=null)
+            _midean.setLeft(_maxHeap.getTop());
     }
 
 

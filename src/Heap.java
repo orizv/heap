@@ -24,17 +24,21 @@ public abstract class Heap {
     public Heap(Point[] parr){
 
         int n=parr.length;
-
+        _size=0;
         _nodes=new Node[n+10*(int)Math.log(n)+1];
 
         for (int i=0;i<parr.length;i++){
             if(parr[i]!=null) {
-                _nodes[i] = new Node(parr[i]);
+                _nodes[i+1] = new Node(parr[i]);
                 _size++;
             }
         }
         for(int i=_size/2;i>0;i--){
             heapify(i);
+        }
+        for(int i=1;i<=_size/2;i++){
+            _nodes[i].setRight(_nodes[i*2+1]);
+            _nodes[i].setLeft(_nodes[i*2]);
         }
     }
 
@@ -49,9 +53,9 @@ public abstract class Heap {
      * @param p point to add
      */
     public void insert(Point p) {
+        _size++;
         _nodes[_size]= new Node(p);
         heapify(_size);
-        _size++;
     }
 
     /**
@@ -59,15 +63,19 @@ public abstract class Heap {
      * @param n node to add
      */
     public void insert(Node n){
-        _nodes[_size]= n;
-        if(_nodes[getParentInd(_size)].getLeft()==null) {
-            _nodes[getParentInd(_size)].setLeft(n);
-        }
-        else{
-            _nodes[getParentInd(_size)].setRight(n);
-        }
-        heapify(_size);
         _size++;
+        _nodes[_size]= n;
+        if(_size>1) {
+            if (_nodes[getParentInd(_size)].getLeft() == null) {
+                _nodes[getParentInd(_size)].setLeft(n);
+            } else {
+                _nodes[getParentInd(_size)].setRight(n);
+            }
+            heapify(_size);
+        }
+    }
+    public void add(){
+
     }
 
     /**
@@ -83,10 +91,10 @@ public abstract class Heap {
      */
     public Node extract(){
         if(_size==0) return null;
-        Node ans=_nodes[0];
+        Node ans=_nodes[1];
         _size--;
-        _nodes[0]=_nodes[_size];
-        heapify(0);
+        _nodes[1]=_nodes[_size];
+        heapify(1);
         return ans;
     }
 
@@ -95,9 +103,9 @@ public abstract class Heap {
      * @return  the top of the heap node
      */
     public Node getTop(){
-        if(_size==0)
+        if(_size==1)
             return null;
-        return _nodes[0];
+        return _nodes[1];
     }
     /**
      * switches the values in the point array of n1 and n2
@@ -143,6 +151,10 @@ public abstract class Heap {
      */
     protected int getLeftInd(int ind){
         return 2*ind;
+    }
+
+    private boolean isLeaf(int ind){
+        return (ind >= _size/2) && (_size > ind);
     }
 
 }
