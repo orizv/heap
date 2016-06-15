@@ -14,10 +14,20 @@ public class TotalHeap {
         for (int i=0;i<points.length;i++){
             if(points[i].getY()>=median.getY()){
 
-                if(points[i].getY()==median.getY()&&points[i].getY()==median.getY()) {
+                if(points[i].getY()==median.getY()&&points[i].getX()==median.getX()) {
                     _midean = new Node(points[i]);
                 }
                 else {
+                    if(points[i].getY()==median.getY()) {
+                        if(points[i].getX()>=median.getX()){
+                            maxPointArr[maxInd]=points[i];
+                            maxInd++;
+                        }
+                        else{
+                            minPointArr[minInd] = points[i];
+                            minInd++;
+                        }
+                    }
                     minPointArr[minInd] = points[i];
                     minInd++;
                 }
@@ -132,7 +142,7 @@ public class TotalHeap {
      */
     private void syncSize(){
         if(_maxHeap!=null&_minHeap!=null) {
-            if (_maxHeap.get_size() > _minHeap.get_size()) {  // make the size differ by max 1
+            if (_maxHeap.get_size() > _minHeap.get_size()+1) {  // make the size differ by max 1
                 Node temp = _midean;
                 _midean = _maxHeap.extract();
                 _minHeap.insert(temp);

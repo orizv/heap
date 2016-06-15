@@ -53,7 +53,7 @@ public class Main {
 		Point[] expectedPoints1 = {
 				new Point(1, 2),
 				};
-//		testExpectedPoints(testName, expectedPoints1, pdt.getMedianPoints(1));
+		testExpectedPoints(testName, expectedPoints1, pdt.getMedianPoints(1));
 		testName = "A3.2";
 		Point[] expectedPoints2 = {
 				new Point(3, 1),
