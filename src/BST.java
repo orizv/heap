@@ -1,5 +1,3 @@
-import java.lang.reflect.Method;
-
 /**
  * Created by user on 09/06/2016.
  */
@@ -104,7 +102,7 @@ public class BST {
      * @param p - the points that needed to be removed
      */
     public void remove(Point p){
-        BSTNode del =search(p);
+        BSTNode del =search(p); //finds where the point is saved
         remove(del);//calls a recursive function
     }
 
@@ -237,14 +235,17 @@ public class BST {
         return ans;
     }
 
-    /** need to fix - not correct!!!!
-     * a recursive method to fill an array with point within a certain range
+    /**
+     *  a recursive method to fill an array with point within a certain range
+     * @param ans - the array of points to return
      * @param left - the lower bound of the points neede to be returned
      * @param right - the upper bound
      * @param points - a queue that holds the BSTNodes in the range and help to get the next in order.
+     * @param filled - until where is the array flled
+     * @return an array of the points in range
      */
     private Point[] fillArrayInRange (Point[] ans, int left, int right,Queue points, int filled) {
-        Queue check =new Queue();
+        Queue check =new Queue(); // a new queue to enter
         while (!(points.isEmpty())){
             BSTNode cur = points.dequeue();
             if(cur.getLeft()!=null) {
@@ -290,8 +291,8 @@ public class BST {
         BSTNode curRight = (BSTNode)parent.getRight();
         int size=parent.getSize();
         boolean ableLeft=(curLeft!=null),ableRight=(curRight!=null);
-        while ((ableLeft&&curLeft.getPoint().getX()!=left)|(ableRight&&curRight.getPoint().getX()!=right)){
-            if(ableLeft) {
+        while ((ableLeft&&curLeft.getPoint().getX()!=left)|(ableRight&&curRight.getPoint().getX()!=right)){// check if can tighten the nodes to the bounds
+            if(ableLeft) {// check if we can get nearer to lower bound
                 if (curLeft.getPoint().getX() > left ) {
                     if (curLeft.getLeft() == null)
                         ableLeft = false;
@@ -308,7 +309,7 @@ public class BST {
                         ableLeft = false;
                 }
             }
-            if (ableRight) {
+            if (ableRight) {// check if we can get nearer to upper bound
                 if (curRight.getPoint().getX() < right ) {
                     if (curRight.getRight() == null)
                         ableRight = false;
@@ -326,7 +327,7 @@ public class BST {
                 }
             }
         }
-        if (curLeft!=null&&curLeft.getLeft()!=null)
+        if (curLeft!=null&&curLeft.getLeft()!=null)// reduces the summery of all the nodes that are left out of the range
             size=size-((BSTNode)curLeft.getLeft()).getSize();
         if (curRight!=null&&curRight.getRight()!=null)
             size=size-((BSTNode)curRight.getRight()).getSize();
@@ -345,8 +346,8 @@ public class BST {
         BSTNode curRight = (BSTNode)parent.getRight();
         int sum=parent.getSum();
         boolean ableLeft=(curLeft!=null),ableRight=(curRight!=null);
-        while ((ableLeft&&curLeft.getPoint().getX()!=left)|(ableRight&&curRight.getPoint().getX()!=right)){
-            if(ableLeft) {
+        while ((ableLeft&&curLeft.getPoint().getX()!=left)|(ableRight&&curRight.getPoint().getX()!=right)){ // check if can tighten the nodes to the bounds
+            if(ableLeft) { // check if we can get nearer to lower bound
                 if (curLeft.getPoint().getX() > left ) {
                     if (curLeft.getLeft() == null)
                         ableLeft = false;
@@ -363,7 +364,7 @@ public class BST {
                         ableLeft = false;
                 }
             }
-            if (ableRight) {
+            if (ableRight) {// check if we can get nearer to upper bound
                 if (curRight.getPoint().getX() < right ) {
                     if (curRight.getRight() == null)
                         ableRight = false;
@@ -381,7 +382,7 @@ public class BST {
                 }
             }
         }
-        if (curLeft!=null&&curLeft.getLeft()!=null)
+        if (curLeft!=null&&curLeft.getLeft()!=null) // reduces the summery of all the nodes that are left out of the range
             sum=sum-((BSTNode)curLeft.getLeft()).getSum();
         if (curRight!=null&&curRight.getRight()!=null)
             sum=sum-((BSTNode)curRight.getRight()).getSum();
@@ -397,8 +398,8 @@ public class BST {
      */
     private BSTNode getPrimalParent(BSTNode curr, int left, int right){
         BSTNode ans;
-        if (curr.getPoint().getX()<=right)
-            if(curr.getPoint().getX()>=left)
+        if (curr.getPoint().getX()<=right) // check the upper bound
+            if(curr.getPoint().getX()>=left) // check the lower bound
                 ans=curr;
             else
                 ans=getPrimalParent((BSTNode)curr.getRight(),left,right);
