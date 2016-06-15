@@ -143,12 +143,21 @@ public class BST {
      * @return the successor
      */
     private BSTNode findNextInLine(BSTNode t){
-        if (t.getLeft()!=null)
-            return findMinToReplace(t);
-        else if(t.getRight()!=null)
-            return findMaxToReplace(t);
-        else
-            return null;
+        boolean found=false;
+        BSTNode ans=null;
+        if (t.getLeft()!=null) {
+            ans = findMinReplace((BSTNode)t.getLeft());
+            found = true;
+        }
+        else if(t.getRight()!=null){
+            ans =findMaxReplace((BSTNode)t.getRight());
+            found=true;
+        }
+        if(found) {
+            t.descreseSize(1);
+            t.descreseSum(ans.getPoint().getY());
+        }
+        return ans;
     }
 
     /**
@@ -156,10 +165,10 @@ public class BST {
      * @param t - the BSTNode that needed to be replaced
      * @return the successor
      */
-    private BSTNode findMinToReplace(BSTNode t){
+    private BSTNode findMinReplace(BSTNode t){
         BSTNode ans;
-        if (t.getLeft()!=null) {
-            ans = findMinToReplace((BSTNode) t.getLeft());
+        if (t.getRight()!=null) {
+            ans = findMinReplace((BSTNode) t.getRight());
             t.descreseSize(1);
             t.descreseSum(ans.getPoint().getY());
         }
@@ -173,10 +182,10 @@ public class BST {
      * @param t - the BSTNode that needed to be replaced
      * @return the successor
      */
-    private BSTNode findMaxToReplace(BSTNode t){
+    private BSTNode findMaxReplace(BSTNode t){
         BSTNode ans;
-        if (t.getRight()!=null) {
-            ans = findMaxToReplace((BSTNode) t.getRight());
+        if (t.getLeft()!=null) {
+            ans = findMaxReplace((BSTNode) t.getLeft());
             t.descreseSize(1);
             t.descreseSum(ans.getPoint().getY());
         }
@@ -268,7 +277,7 @@ public class BST {
             if(cur!=null) {
                 if (cur.getPoint().getX() < left)
                     check.enqueue((BSTNode) cur.getRight());
-                else if (cur != null && cur.getPoint().getX() > right)
+                else if (cur.getPoint().getX() > right)
                     check.enqueue((BSTNode) cur.getLeft());
                 else
                     points.enqueue(cur);
