@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55182a67-1b68-45ad-bb15-3f810c280684" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/Main.class" afterPath="$PROJECT_DIR$/output/Main.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/BST.class" afterPath="$PROJECT_DIR$/output/BST.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/MaxHeap.class" afterPath="$PROJECT_DIR$/output/MaxHeap.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/MinHeap.class" afterPath="$PROJECT_DIR$/output/MinHeap.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/TotalHeap.class" afterPath="$PROJECT_DIR$/output/TotalHeap.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Heap.java" afterPath="$PROJECT_DIR$/src/Heap.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MaxHeap.java" afterPath="$PROJECT_DIR$/src/MaxHeap.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MinHeap.java" afterPath="$PROJECT_DIR$/src/MinHeap.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TempNode.java" afterPath="$PROJECT_DIR$/src/TempNode.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TotalHeap.java" afterPath="$PROJECT_DIR$/src/TotalHeap.java" />
     </list>
     <ignored path="heap.iws" />
@@ -29,7 +35,7 @@
       <file leaf-file-name="PointDataStructure.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PointDataStructure.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
+            <state relative-caret-position="435">
               <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
               <folding>
                 <element signature="e#1041#1042#0" expanded="true" />
@@ -55,7 +61,7 @@
       <file leaf-file-name="Node.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Node.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
+            <state relative-caret-position="336">
               <caret line="28" column="28" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
               <folding />
             </state>
@@ -65,8 +71,8 @@
       <file leaf-file-name="Heap.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Heap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+            <state relative-caret-position="428">
+              <caret line="94" column="16" selection-start-line="94" selection-start-column="16" selection-end-line="94" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -75,10 +81,11 @@
       <file leaf-file-name="MaxHeap.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MaxHeap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+            <state relative-caret-position="270">
+              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding>
                 <element signature="e#115#116#0" expanded="true" />
+                <element signature="e#142#143#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -87,13 +94,9 @@
       <file leaf-file-name="Point.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Point.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-              <folding>
-                <element signature="e#422#423#0" expanded="true" />
-                <element signature="e#585#586#0" expanded="true" />
-                <element signature="e#639#640#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="165">
+              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -101,21 +104,18 @@
       <file leaf-file-name="MinHeap.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MinHeap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-              <folding>
-                <element signature="e#114#115#0" expanded="true" />
-                <element signature="e#141#142#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="435">
+              <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TotalHeap.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TotalHeap.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TotalHeap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="144" column="41" selection-start-line="144" selection-start-column="41" selection-end-line="144" selection-end-column="41" />
+            <state relative-caret-position="380">
+              <caret line="133" column="0" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -124,21 +124,22 @@
       <file leaf-file-name="TempNode.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TempNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+            <state relative-caret-position="285">
+              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding>
-                <element signature="e#463#464#0" expanded="true" />
-                <element signature="e#490#491#0" expanded="true" />
+                <element signature="e#475#476#0" expanded="true" />
+                <element signature="e#507#508#0" expanded="true" />
+                <element signature="e#536#537#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="121" column="0" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
+            <state relative-caret-position="486">
+              <caret line="290" column="0" selection-start-line="290" selection-start-column="0" selection-end-line="290" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -172,13 +173,13 @@
         <option value="$PROJECT_DIR$/src/PointDataStructure.java" />
         <option value="$PROJECT_DIR$/src/XHandeler.java" />
         <option value="$PROJECT_DIR$/src/BST.java" />
-        <option value="$PROJECT_DIR$/src/TempNode.java" />
         <option value="$PROJECT_DIR$/src/Node.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/TotalHeap.java" />
+        <option value="$PROJECT_DIR$/src/TempNode.java" />
         <option value="$PROJECT_DIR$/src/MaxHeap.java" />
         <option value="$PROJECT_DIR$/src/MinHeap.java" />
         <option value="$PROJECT_DIR$/src/Heap.java" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
-        <option value="$PROJECT_DIR$/src/TotalHeap.java" />
       </list>
     </option>
   </component>
@@ -252,9 +253,9 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -565,7 +566,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32881" sideWeight="0.5019531" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3282532" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3270809" sideWeight="0.49804688" order="2" side_tool="false" content_ui="tabs" x="-28" y="710" width="2040" height="315" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -574,16 +575,13 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28604925" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3165299" sideWeight="0.49804688" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31732777" sideWeight="0.49804688" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32776618" sideWeight="0.49804688" order="2" side_tool="false" content_ui="tabs" x="-28" y="710" width="2040" height="315" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -629,12 +627,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>83</line>
+          <line>290</line>
           <properties />
-          <option name="timeStamp" value="67" />
+          <option name="timeStamp" value="74" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="68" />
+      <option name="time" value="75" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -695,6 +693,7 @@
           <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
           <folding>
             <element signature="e#115#116#0" expanded="true" />
+            <element signature="e#142#143#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -767,6 +766,7 @@
           <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
           <folding>
             <element signature="e#115#116#0" expanded="true" />
+            <element signature="e#142#143#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -813,6 +813,7 @@
           <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
           <folding>
             <element signature="e#115#116#0" expanded="true" />
+            <element signature="e#142#143#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -838,11 +839,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-          <folding>
-            <element signature="e#422#423#0" expanded="true" />
-            <element signature="e#585#586#0" expanded="true" />
-            <element signature="e#639#640#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -896,6 +893,7 @@
           <caret line="24" column="9" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
           <folding>
             <element signature="e#115#116#0" expanded="true" />
+            <element signature="e#142#143#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -911,11 +909,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-          <folding>
-            <element signature="e#422#423#0" expanded="true" />
-            <element signature="e#585#586#0" expanded="true" />
-            <element signature="e#639#640#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1005,19 +999,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MaxHeap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding>
-            <element signature="e#115#116#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Node.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
+        <state relative-caret-position="336">
           <caret line="28" column="28" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
           <folding />
         </state>
@@ -1025,59 +1009,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Point.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding>
-            <element signature="e#422#423#0" expanded="true" />
-            <element signature="e#585#586#0" expanded="true" />
-            <element signature="e#639#640#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="165">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MinHeap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state relative-caret-position="435">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MaxHeap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding>
-            <element signature="e#114#115#0" expanded="true" />
-            <element signature="e#141#142#0" expanded="true" />
+            <element signature="e#115#116#0" expanded="true" />
+            <element signature="e#142#143#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TempNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        <state relative-caret-position="285">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding>
-            <element signature="e#463#464#0" expanded="true" />
-            <element signature="e#490#491#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Heap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="121" column="0" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#475#476#0" expanded="true" />
+            <element signature="e#507#508#0" expanded="true" />
+            <element signature="e#536#537#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/PointDataStructure.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
+        <state relative-caret-position="435">
           <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
           <folding>
             <element signature="e#1041#1042#0" expanded="true" />
@@ -1099,9 +1070,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TotalHeap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="144" column="41" selection-start-line="144" selection-start-column="41" selection-end-line="144" selection-end-column="41" />
+        <state relative-caret-position="380">
+          <caret line="133" column="0" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Heap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="428">
+          <caret line="94" column="16" selection-start-line="94" selection-start-column="16" selection-end-line="94" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="290" column="0" selection-start-line="290" selection-start-column="0" selection-end-line="290" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

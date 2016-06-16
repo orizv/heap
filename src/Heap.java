@@ -55,7 +55,7 @@ public abstract class Heap {
     public void insert(Point p) {
         _size++;
         _nodes[_size]= new Node(p);
-        heapify(_size);
+        heapUp(_size);
     }
 
     /**
@@ -71,12 +71,10 @@ public abstract class Heap {
             } else {
                 _nodes[getParentInd(_size)].setRight(n);
             }
-            heapify(_size);
+            heapUp(_size);
         }
     }
-    public void add(){
-
-    }
+    public abstract void heapUp(int ind);
 
     /**
      * heapify should be made by the selected implementetaion
@@ -92,8 +90,9 @@ public abstract class Heap {
     public Node extract(){
         if(_size==0) return null;
         Node ans=_nodes[1];
+        switchvals(1,_size);
+        _nodes[_size]=null;
         _size--;
-        _nodes[1]=_nodes[_size];
         heapify(1);
         return ans;
     }
@@ -103,7 +102,7 @@ public abstract class Heap {
      * @return  the top of the heap node
      */
     public Node getTop(){
-        if(_size==1)
+        if(_size==0)
             return null;
         return _nodes[1];
     }
