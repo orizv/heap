@@ -6,7 +6,7 @@ public class TempNode extends Node {
     Node right;
 
     public TempNode(Node n){
-        super(n.getLeft(),n.getRight(),n.getPoint());
+        super(null,null,n.getPoint());
         this.left=n.getLeft();
         this.right=n.getRight();
     }
