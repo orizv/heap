@@ -1,7 +1,7 @@
 
 //////////////// DON'T CHANGE THIS FILE ////////////////
 
-public interface PDT 
+public interface PDT
 {
 	
 	//O(log n). Will be called up to log n times

@@ -48,7 +48,9 @@ public class Main {
 		double expectedD = 2.0;
 		double resultD = pdt.averageHeightInRange(XLeft, XRight);
 		testExpected(testName, expectedD, resultD);
-		
+
+		pdt.addPoint(new Point(5,7));
+
 		testName = "A3.1";
 		Point[] expectedPoints1 = {
 				new Point(1, 2),
@@ -67,6 +69,17 @@ public class Main {
 				new Point(1, 2),
 				};
 		testExpectedPoints(testName, expectedPoints3, pdt.getMedianPoints(3));
+
+		Point[] ans = {
+				new Point(0, 0),
+				new Point(3, 1),
+				new Point(2, 3),
+				new Point(1, 2),
+				new Point(4, 4),
+				new Point(5,7)
+		};
+		testName = "A3.4";
+		testExpectedPoints(testName, ans, pdt.getAllPoints());
 
 		Point[] points2 = {
 				new Point(1, 4), 

@@ -83,8 +83,14 @@ public class BST {
     private void insert (Point p, BSTNode t,BSTNode parent){
         if (t==null) {// if it is the bottom, insert.
             t = new BSTNode(p);
-            t.setParent(parent);
-            parent.makeLeaf(false);
+            if (parent!=null) {
+                t.setParent(parent);
+                parent.makeLeaf(false);
+                if (parent.getPoint().getX()>p.getX())
+                    parent.setLeft(t);
+                else
+                    parent.setRight(t);
+            }
         }
         else {// find the correct place to insert and along the way increase the size and the sum accordidng to the point that is inserted
             t.addToSum(p.getY());
@@ -115,11 +121,27 @@ public class BST {
             this.delete(t);
         }
         else {
-            BSTNode swap = findNextInLine(t); // finds the points successor so it will replace the point in the position in the middle of
-            t.descreseSum(t.getPoint().getY());
-            t.setPoint(swap.getPoint());
-            t.addToSum(t.getPoint().getY());
-            remove(swap);// continue to delete the successor from its place untill it finds a leaf
+            if (t.getLeft()==null) {
+                if (t.getParent().getLeft() == t) {
+                    t.getParent().setLeft(t.getRight());
+                }
+                else
+                    t.getParent().setRight(t.getRight());
+            }
+            else if(t.getRight()==null){
+                if (t.getParent().getLeft() == t) {
+                    t.getParent().setLeft(t.getLeft());
+                }
+                else
+                    t.getParent().setRight(t.getLeft());
+            }
+            else {
+                BSTNode swap = findNextInLine(t); // finds the points successor so it will replace the point in the position in the middle of
+                t.descreseSum(t.getPoint().getY());
+                t.setPoint(swap.getPoint());
+                t.addToSum(t.getPoint().getY());
+                remove(swap);// continue to delete the successor from its place untill it finds a leaf
+            }
         }
     }
 
@@ -143,20 +165,9 @@ public class BST {
      * @return the successor
      */
     private BSTNode findNextInLine(BSTNode t){
-        boolean found=false;
-        BSTNode ans=null;
-        if (t.getLeft()!=null) {
-            ans = findMinReplace((BSTNode)t.getLeft());
-            found = true;
-        }
-        else if(t.getRight()!=null){
-            ans =findMaxReplace((BSTNode)t.getRight());
-            found=true;
-        }
-        if(found) {
-            t.descreseSize(1);
-            t.descreseSum(ans.getPoint().getY());
-        }
+        BSTNode ans = findMinReplace((BSTNode)t.getLeft());
+        t.descreseSize(1);
+        t.descreseSum(ans.getPoint().getY());
         return ans;
     }
 
@@ -169,23 +180,6 @@ public class BST {
         BSTNode ans;
         if (t.getRight()!=null) {
             ans = findMinReplace((BSTNode) t.getRight());
-            t.descreseSize(1);
-            t.descreseSum(ans.getPoint().getY());
-        }
-        else
-            ans = t;
-        return ans;
-    }
-
-    /**
-     * in case of deletion finds the successor - finds the lower successor
-     * @param t - the BSTNode that needed to be replaced
-     * @return the successor
-     */
-    private BSTNode findMaxReplace(BSTNode t){
-        BSTNode ans;
-        if (t.getLeft()!=null) {
-            ans = findMaxReplace((BSTNode) t.getLeft());
             t.descreseSize(1);
             t.descreseSum(ans.getPoint().getY());
         }
@@ -236,10 +230,16 @@ public class BST {
      */
     public Point[] getPointsInRange(int left, int right){
         BSTNode parent=getPrimalParent(_root,left,right);
-        Queue points = new Queue();
-        points.enqueue(parent);
-        Point[] ans = new Point[numPointsInRange(left, right)];
-        fillArrayInRange(ans,left,right,points,0);
+        Point[] ans;
+        int size =numPointsInRange(left, right);
+        if (size ==0)
+            ans = new Point[0];
+        else {
+            Queue points = new Queue();
+            points.enqueue(parent);
+            ans = new Point[size];
+            fillArrayInRange(ans, left, right, points, 0);
+        }
 
         return ans;
     }
@@ -296,6 +296,8 @@ public class BST {
      */
     public int numPointsInRange(int left, int right){
         BSTNode parent=getPrimalParent(_root,left,right);
+        if (parent==null)
+            return 0;
         BSTNode curLeft=(BSTNode) parent.getLeft();
         BSTNode curRight = (BSTNode)parent.getRight();
         int size=parent.getSize();
@@ -351,6 +353,8 @@ public class BST {
      */
     public int sumPointsInRange(int left, int right){
         BSTNode parent=getPrimalParent(_root,left,right);
+        if (parent==null)
+            return 0;
         BSTNode curLeft=(BSTNode) parent.getLeft();
         BSTNode curRight = (BSTNode)parent.getRight();
         int sum=parent.getSum();
@@ -407,13 +411,17 @@ public class BST {
      */
     private BSTNode getPrimalParent(BSTNode curr, int left, int right){
         BSTNode ans;
-        if (curr.getPoint().getX()<=right) // check the upper bound
-            if(curr.getPoint().getX()>=left) // check the lower bound
-                ans=curr;
+        if (curr!=null) {
+            if (curr.getPoint().getX() <= right) // check the upper bound
+                if (curr.getPoint().getX() >= left) // check the lower bound
+                    ans = curr;
+                else
+                    ans = getPrimalParent((BSTNode) curr.getRight(), left, right);
             else
-                ans=getPrimalParent((BSTNode)curr.getRight(),left,right);
+                ans = getPrimalParent((BSTNode) curr.getLeft(), left, right);
+        }
         else
-            ans=getPrimalParent((BSTNode)curr.getLeft(),left,right);
+            ans=null;
         return ans;
     }
 
