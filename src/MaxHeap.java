@@ -3,46 +3,63 @@
  */
 public class MaxHeap extends Heap {
 
-    public MaxHeap(Point[] parr){
+    public MaxHeap(Point[] parr) {
         super(parr);
+    }
+
+    public MaxHeap(int n) {
+        super(2 * n);
     }
 
     @Override
     public void heapUp(int ind) {
-        if (ind>1) {
-            Node father=_nodes[getParentInd(ind)];
-            Node cur=_nodes[ind];
-            if(father.getPoint().getY()<cur.getPoint().getY())
-            {
-                switchvals(ind,getParentInd(ind));
-                heapify(getParentInd(ind));
-            }
-            if(father.getPoint().getY()==cur.getPoint().getY()&&father.getPoint().getX()<cur.getPoint().getX()){
-                switchvals(ind,getParentInd(ind));
-                heapify(getParentInd(ind));
-            }
+        int i=ind;
+        while (i>1&&
+                ((_nodes[getParentInd(i)].getPoint().getY()<_nodes[i].getPoint().getY())
+                ||
+                        (_nodes[getParentInd(i)].getPoint().getY()==_nodes[i].getPoint().getY()&&
+                        _nodes[getParentInd(i)].getPoint().getX()<_nodes[i].getPoint().getY()))
+                ){
+            switchvals(i,getParentInd(i));
+            i=getParentInd(i);
         }
+//        if (ind > 1) {
+//            Node father = _nodes[getParentInd(ind)];
+//            Node cur = _nodes[ind];
+//            if (father.getPoint().getY() < cur.getPoint().getY()) {
+//                switchvals(ind, getParentInd(ind));
+//                heapify(getParentInd(ind));
+//            }
+//            if (father.getPoint().getY() == cur.getPoint().getY() && father.getPoint().getX() < cur.getPoint().getX()) {
+//                switchvals(ind, getParentInd(ind));
+//                heapify(getParentInd(ind));
+//            }
+//        }
     }
 
-    public MaxHeap(int n){super(2*n);}
     /**
      * standard heap heapify function
+     *
      * @param curr current index in the array
      */
     public void heapify(int curr) {
+
         int left=getLeftInd(curr);
         int right=getRightInd(curr);
         int largest=curr;
-        if(left<=get_size() && ((_nodes[largest].getPoint().getY()<_nodes[left].getPoint().getY())||
-                (_nodes[largest].getPoint().getY()==_nodes[left].getPoint().getY()&&_nodes[largest].getPoint().getX()<_nodes[left].getPoint().getX()))) {
+
+        if (left <= get_size()&&((_nodes[largest].getPoint().getY()<_nodes[left].getPoint().getY())||
+                (_nodes[largest].getPoint().getY()==_nodes[left].getPoint().getY()&&
+        _nodes[largest].getPoint().getX()<_nodes[left].getPoint().getX()))){
             largest = left;
         }
-        if(right<=get_size() && ((_nodes[largest].getPoint().getY()<_nodes[right].getPoint().getY())||
-                (_nodes[largest].getPoint().getY()==_nodes[right].getPoint().getY()&&_nodes[largest].getPoint().getX()<_nodes[right].getPoint().getX()))) {
+        if (right <= get_size() && ((_nodes[largest].getPoint().getY()<_nodes[right].getPoint().getY())||
+                (_nodes[largest].getPoint().getY()==_nodes[right].getPoint().getY()&&
+                _nodes[largest].getPoint().getX()<_nodes[right].getPoint().getX()))) {
             largest = right;
         }
-        if(largest!=curr){
-            switchvals(curr,largest);
+        if (largest != curr){
+            switchvals(curr, largest);
             heapify(largest);
         }
     }

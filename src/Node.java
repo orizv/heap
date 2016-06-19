@@ -19,7 +19,11 @@ public class Node {
         this._left=left;
         this._right=right;
     }
-
+    public Node(Node n){
+        this._point=new Point(n._point);
+        this._left=n._left;
+        this._right=n._right;
+    }
     public Node(Point p){
         _point=p;
         _left=null;
@@ -32,5 +36,6 @@ public class Node {
     public void setLeft(Node n){_left= n;}
     public void setRight(Node n){_right=n;}
     public String toString(){return _point.getX()+" "+ _point.getY();}
+    public void set_point(Point p){this._point=p;}
 
 }

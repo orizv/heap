@@ -10,7 +10,7 @@ public class TotalHeap {
         Point[] minPointArr= new Point[points.length];
         int minInd=0;
         Point[] maxPointArr= new Point[points.length];
-        int maxInd=0;
+        int maxInd= points.length/2-1;
         for (int i=0;i<points.length;i++){
             if(points[i].getY()>median.getY()){
                 minPointArr[minInd]=points[i];
@@ -18,7 +18,7 @@ public class TotalHeap {
             }
             if(points[i].getY()<median.getY()){
                 maxPointArr[maxInd]=points[i];
-                maxInd++;
+                maxInd--;
             }
             if(points[i].getY()==median.getY()){
                 if(points[i].getX()>median.getX()){
@@ -27,7 +27,7 @@ public class TotalHeap {
                 }
                 if(points[i].getX()<median.getX()){
                     maxPointArr[maxInd]=points[i];
-                    maxInd++;
+                    maxInd--;
                 }
                 if(points[i].getX()==median.getX()){
                     _midean=new Node(points[i]);
@@ -95,10 +95,7 @@ public class TotalHeap {
      */
     public Point extractMedian()
     {
-        Point ans=_midean.getPoint();
-        _midean=_maxHeap.extract();
-        syncSize();
-        return  ans;
+        return extractMedianNode().getPoint();
     }
 
     /**
@@ -129,13 +126,20 @@ public class TotalHeap {
     private Node extractMedianNode(){
         Node ans=_midean;
         _midean=null;
-
-        if(_maxHeap.get_size()>0)
+        int n=getSize()/2;
+        if(n<=_maxHeap.get_size()-1&_maxHeap.get_size()>0)
+        {
             _midean=_maxHeap.extract();
-        else {
-            if (_minHeap.get_size() > 0)
-                _midean = _minHeap.extract();
         }
+        else if(_minHeap.get_size()>0){
+            _midean=_minHeap.extract();
+        }
+//        if(_maxHeap.get_size()>0)
+//            _midean=_maxHeap.extract();
+//        else {
+//            if (_minHeap.get_size() > 0)
+//                _midean = _minHeap.extract();
+//        }
 
         syncSize();
         return  ans;
@@ -145,17 +149,17 @@ public class TotalHeap {
      */
     private void syncSize(){
         if(_maxHeap!=null&_minHeap!=null) {
-            //if (_maxHeap.get_size() > _minHeap.get_size()+2) {  // make the size differ by max 1
-            if(_maxHeap.get_size()-_minHeap.get_size()>2){
-                Node temp = _midean;
-                _midean = _maxHeap.extract();
-                _minHeap.insert(temp);
-            }
-            //if (_minHeap.get_size() > _maxHeap.get_size()+1) {
+                if (_maxHeap.get_size() - _minHeap.get_size() > 2 & _maxHeap.get_size() > 0) {
+                    Node temp = _midean;
+                    _midean = _maxHeap.extract();
+                    _minHeap.insert(temp);
+                }
             if(_minHeap.get_size()-_maxHeap.get_size()>1){
-                Node temp = _midean;
-                _midean = _minHeap.extract();
-                _maxHeap.insert(temp);
+                if( _minHeap.get_size()>0) {
+                    Node temp = _midean;
+                    _midean = _minHeap.extract();
+                    _maxHeap.insert(temp);
+                }
             }
             mediansons();
         }

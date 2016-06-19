@@ -33,12 +33,12 @@ public abstract class Heap {
                 _size++;
             }
         }
-        for(int i=_size/2;i>0;i--){
-            heapify(i);
+        for(int i=0;i<_size+1;i++){
+            heapUp(i);
         }
         for(int i=1;i<=_size/2;i++){
-            _nodes[i].setRight(_nodes[i*2+1]);
-            _nodes[i].setLeft(_nodes[i*2]);
+            _nodes[i].setRight(_nodes[getRightInd(i)]);
+            _nodes[i].setLeft(_nodes[getLeftInd(i)]);
         }
     }
 
@@ -89,8 +89,8 @@ public abstract class Heap {
      */
     public Node extract(){
         if(_size==0) return null;
-        Node ans=_nodes[1];
         switchvals(1,_size);
+        Node ans=_nodes[_size];
         _nodes[_size]=null;
         _size--;
         heapify(1);
@@ -112,17 +112,37 @@ public abstract class Heap {
      * @param n2 second index
      */
     protected void switchvals(int n1,int n2){
-        //swtich val
-        Node t=_nodes[n1];
-        _nodes[n1]=_nodes[n2];
-        _nodes[n2]=t;
-        //switch sons
-        t=_nodes[n1].getLeft();
-        _nodes[n1].setLeft(_nodes[n2].getLeft());
-        _nodes[n2].setLeft(t);
-        t=_nodes[n1].getRight();
-        _nodes[n1].setRight(_nodes[n2].getRight());
-        _nodes[n2].setRight(t);
+        Point t= _nodes[n1].getPoint();
+        _nodes[n1].set_point(_nodes[n2].getPoint());
+        _nodes[n2].set_point(t);
+//        Node t=_nodes[n1];
+//        _nodes[n1]=_nodes[n2];
+//        _nodes[n2]=t;
+//
+//        _nodes[n1].setLeft(_nodes[getLeftInd(n2)]);
+//        _nodes[n1].setRight(_nodes[getRightInd(n2)]);
+//        _nodes[n2].setLeft(_nodes[getLeftInd(n1)]);
+//        _nodes[n2].setRight(_nodes[getRightInd(n1)]);
+//        if(n1!=1){
+//            t=_nodes[getParentInd(n1)].getLeft();
+//            if(t==_nodes[n1]){
+//                _nodes[getParentInd(n1)].setLeft(_nodes[n2]);
+//            }
+//            t=_nodes[getParentInd(n1)].getRight();
+//            if(t==_nodes[n1]){
+//                _nodes[getParentInd(n1)].setRight(_nodes[n2]);
+//            }
+//        }
+//        if(n2!=1){
+//            t=_nodes[getParentInd(n2)].getLeft();
+//            if(t==_nodes[n2]){
+//                _nodes[getParentInd(n2)].setLeft(_nodes[n1]);
+//            }
+//            t=_nodes[getParentInd(n2)].getRight();
+//            if(t==_nodes[n1]){
+//                _nodes[getParentInd(n2)].setRight(_nodes[n1]);
+//            }
+//        }
     }
 
     /**
@@ -152,7 +172,7 @@ public abstract class Heap {
         return 2*ind;
     }
 
-    private boolean isLeaf(int ind){
+    protected boolean isLeaf(int ind){
         return (ind >= _size/2) && (_size > ind);
     }
 

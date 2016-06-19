@@ -15,11 +15,11 @@ public class MinHeap extends Heap{
             if(father.getPoint().getY()>cur.getPoint().getY())
             {
                 switchvals(ind,getParentInd(ind));
-                heapify(getParentInd(ind));
+                heapUp(getParentInd(ind));
             }
             if(father.getPoint().getY()==cur.getPoint().getY()&&father.getPoint().getX()>cur.getPoint().getX()){
                 switchvals(ind,getParentInd(ind));
-                heapify(getParentInd(ind));
+                heapUp(getParentInd(ind));
             }
         }
     }
