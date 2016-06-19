@@ -74,10 +74,15 @@ public abstract class Heap {
             heapUp(_size);
         }
     }
+
+    /**
+     * heapify from bottom to top
+     * @param ind
+     */
     public abstract void heapUp(int ind);
 
     /**
-     * heapify should be made by the selected implementetaion
+     * heapify from top to bottom
      * @param curr
      */
     public abstract void heapify(int curr);
@@ -111,38 +116,10 @@ public abstract class Heap {
      * @param n1 first index
      * @param n2 second index
      */
-    protected void switchvals(int n1,int n2){
-        Point t= _nodes[n1].getPoint();
+    protected void switchvals(int n1,int n2) {
+        Point t = _nodes[n1].getPoint();
         _nodes[n1].set_point(_nodes[n2].getPoint());
         _nodes[n2].set_point(t);
-//        Node t=_nodes[n1];
-//        _nodes[n1]=_nodes[n2];
-//        _nodes[n2]=t;
-//
-//        _nodes[n1].setLeft(_nodes[getLeftInd(n2)]);
-//        _nodes[n1].setRight(_nodes[getRightInd(n2)]);
-//        _nodes[n2].setLeft(_nodes[getLeftInd(n1)]);
-//        _nodes[n2].setRight(_nodes[getRightInd(n1)]);
-//        if(n1!=1){
-//            t=_nodes[getParentInd(n1)].getLeft();
-//            if(t==_nodes[n1]){
-//                _nodes[getParentInd(n1)].setLeft(_nodes[n2]);
-//            }
-//            t=_nodes[getParentInd(n1)].getRight();
-//            if(t==_nodes[n1]){
-//                _nodes[getParentInd(n1)].setRight(_nodes[n2]);
-//            }
-//        }
-//        if(n2!=1){
-//            t=_nodes[getParentInd(n2)].getLeft();
-//            if(t==_nodes[n2]){
-//                _nodes[getParentInd(n2)].setLeft(_nodes[n1]);
-//            }
-//            t=_nodes[getParentInd(n2)].getRight();
-//            if(t==_nodes[n1]){
-//                _nodes[getParentInd(n2)].setRight(_nodes[n1]);
-//            }
-//        }
     }
 
     /**
@@ -170,10 +147,6 @@ public abstract class Heap {
      */
     protected int getLeftInd(int ind){
         return 2*ind;
-    }
-
-    protected boolean isLeaf(int ind){
-        return (ind >= _size/2) && (_size > ind);
     }
 
 }
