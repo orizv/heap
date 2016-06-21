@@ -158,12 +158,12 @@ public class TotalHeap {
      */
     private void syncSize() {
         if (_maxHeap != null & _minHeap != null) {
-            if (_maxHeap.get_size() - _minHeap.get_size() > 2 & _maxHeap.get_size() > 0) {
+            if (_maxHeap.get_size() - _minHeap.get_size() > 2 & _maxHeap.get_size() > 0&&_minHeap.get_size()>0) {
                 Node temp = _midean;
                 _midean = _maxHeap.extract();
                 _minHeap.insert(temp);
             }
-            if (_minHeap.get_size() - _maxHeap.get_size() > 1) {
+            else if (_minHeap.get_size() - _maxHeap.get_size() > 1&&_maxHeap.get_size()>0) {
                 if (_minHeap.get_size() > 0) {
                     Node temp = _midean;
                     _midean = _minHeap.extract();

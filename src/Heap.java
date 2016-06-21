@@ -96,6 +96,15 @@ public abstract class Heap {
         if(_size==0) return null;
         switchvals(1,_size);
         Node ans=_nodes[_size];
+        if(_size>1) {
+            Node father = _nodes[getParentInd(_size)];
+            if (father.getRight() == _nodes[_size]) {
+                father.setRight(null);
+            }
+            if (father.getLeft() == _nodes[_size]) {
+                father.setLeft(null);
+            }
+        }
         _nodes[_size]=null;
         _size--;
         heapify(1);
