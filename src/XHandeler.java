@@ -18,8 +18,8 @@ public class XHandeler {
     }
 
     /**
-     *
-     * @param arr
+     *checks if the array is sorted and if not sort by the pre knowledge
+     * @param arr - the initial arry
      */
     private Point[] checkSort(Point[] arr) {
         int n = arr.length;
@@ -39,26 +39,60 @@ public class XHandeler {
         return arr1;
     }
 
+    /**
+     * insert point
+     * @param p -point to insert
+     */
     public void insert(Point p) {
         tree.insert(p);
     }
 
+    /**
+     * delete point
+     * @param p-the point to remove
+     */
     public void remove(Point p) {
         tree.remove(p);
     }
 
+    /**
+     * checks the number of point in a range
+     * @param XLeft -the lower bound
+     * @param XRight - the upper bound
+     * @return int
+     */
     public int numOfPointsInRange(int XLeft, int XRight){
         return tree.numPointsInRange(XLeft, XRight);
     }
 
+    /**
+     * checks the avarage y's in range
+     * @param XLeft -the lower bound
+     * @param XRight - the upper bound
+     * @return int
+     */
     public double averageHeightInRange(int XLeft, int XRight){
-        return (((double)tree.sumPointsInRange(XLeft,XRight))/this.numOfPointsInRange(XLeft,XRight));
+        int a=this.numOfPointsInRange(XLeft,XRight);
+        if (a!=0)
+            return (((double)tree.sumPointsInRange(XLeft,XRight))/this.numOfPointsInRange(XLeft,XRight));
+        else
+            return 0;
     }
 
-    public Point[] getPointsInRange(int Xleft,int Xright){
-        return tree.getPointsInRange(Xleft, Xright);
+    /**
+     * gets all the points in a certain range.
+     * @param XLeft -the lower bound
+     * @param XRight - the upper bound
+     * @return array of points
+     */
+    public Point[] getPointsInRange(int XLeft,int XRight){
+        return tree.getPointsInRange(XLeft, XRight);
     }
 
+    /**
+     * gets all the current points
+     * @return array of points
+     */
     public Point[] getAllPoints(){
         return  tree.getAllPointsInRange();
     }

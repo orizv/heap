@@ -22,7 +22,8 @@ public class BST {
             int last = points.length-1;
             int first = 0;
             _root = new BSTNode(points[(last + first) / 2]); // initialize the root
-            initialize(points, _root, first, last); // calls another method
+            if (last!=0)
+               initialize(points, _root, first, last); // calls another method
         }
     }
 
@@ -108,7 +109,13 @@ public class BST {
      * @param p - the points that needed to be removed
      */
     public void remove(Point p){
-        BSTNode del =search(p); //finds where the point is saved
+        BSTNode del =search(p);//finds where the point is saved
+        BSTNode parent=del.getParent();
+        while(parent!=null) {
+            parent.descreseSum(del.getSum());
+            parent.descreseSize(1);
+            parent=parent.getParent();
+        }
         remove(del);//calls a recursive function
     }
 
@@ -298,8 +305,7 @@ public class BST {
         BSTNode parent=getPrimalParent(_root,left,right);
         if (parent==null)
             return 0;
-        BSTNode curLeft=(BSTNode) parent.getLeft();
-        BSTNode curRight = (BSTNode)parent.getRight();
+        BSTNode curLeft=parent, curRight=parent;
         int size=parent.getSize();
         boolean ableLeft=(curLeft!=null),ableRight=(curRight!=null);
         while ((ableLeft&&curLeft.getPoint().getX()!=left)|(ableRight&&curRight.getPoint().getX()!=right)){// check if can tighten the nodes to the bounds
